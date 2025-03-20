@@ -1,0 +1,29 @@
+{
+    "actions": [
+        {
+            "id": "announcement",
+            "icon": "bi-megaphone",
+            "title": "Manage Announcements"
+        },
+        {
+            "id": "banners",
+            "icon": "bi-images",
+            "title": "Manage Banners"
+        },
+        {
+            "id": "company_history",
+            "icon": "bi-clock-history",
+            "title": "Manage Company History"
+        },
+        {
+            "id": "footer",
+            "icon": "bi-layout-text-window-reverse",
+            "title": "Manage Footer"
+        },
+        {
+            "id": "navigation",
+            "icon": "bi-list",
+            "title": "Manage Navigation"
+        }
+    ]
+} 

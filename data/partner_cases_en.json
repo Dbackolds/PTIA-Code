@@ -1,0 +1,41 @@
+{
+    "title": "Partnership Cases",
+    "cases": [
+        {
+            "image": "images/case1.jpg",
+            "title": "Major Bank Digital Transformation Project",
+            "description": "Partnered with Microsoft to provide clients with comprehensive digital transformation solutions, including core system upgrades, data middle platform construction, and intelligent customer service system implementation.",
+            "partner_icon": "bi bi-microsoft",
+            "partner_name": "Microsoft"
+        },
+        {
+            "image": "images/case2.jpg",
+            "title": "Manufacturing Enterprise Smart Factory Project",
+            "description": "Collaborated with NVIDIA and Intel to create smart factory solutions for clients, achieving production process automation and intelligence, improving production efficiency by 30%.",
+            "partners": [
+                {
+                    "icon": "bi bi-nvidia",
+                    "name": "NVIDIA"
+                },
+                {
+                    "icon": "bi bi-intel",
+                    "name": "Intel"
+                }
+            ]
+        },
+        {
+            "image": "images/case3.jpg",
+            "title": "Retail Group Intelligent Analysis Platform",
+            "description": "Worked with Google to build an intelligent data analysis platform for clients, analyzing consumer behavior through AI algorithms, optimizing product structure, and increasing sales by 25%.",
+            "partner_icon": "bi bi-google",
+            "partner_name": "Google"
+        },
+        {
+            "title": "New Partnership Case",
+            "description": "Detailed information about this partnership case...",
+            "image": "images/case1.jpg",
+            "partner_name": "Partner Name",
+            "partner_icon": "bi bi-building"
+        }
+    ]
+} 

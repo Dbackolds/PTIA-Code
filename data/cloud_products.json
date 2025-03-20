@@ -1,0 +1,23 @@
+{
+    "title": "我们的云产品",
+    "products": [
+        {
+            "icon": "bi bi-cpu",
+            "title": "人工智能平台",
+            "description": "基于深度学习的AI解决方案，支持自然语言处理、计算机视觉等多种应用场景",
+            "link": "https:\/\/fourm.blmcpia.com"
+        },
+        {
+            "icon": "bi bi-diagram-3",
+            "title": "数字化转型",
+            "description": "为企业提供全方位的数字化转型服务，包括流程优化、系统集成和数据分析",
+            "link": "#"
+        },
+        {
+            "icon": "bi bi-cloud-check",
+            "title": "云平台服务",
+            "description": "安全可靠的企业级云服务，支持弹性扩展，满足不同规模企业的业务需求",
+            "link": "#"
+        }
+    ]
+}

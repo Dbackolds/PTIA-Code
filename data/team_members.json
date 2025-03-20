@@ -1,0 +1,56 @@
+{
+    "title": "核心团队",
+    "description": "我们的团队由行业资深专家组成，拥有丰富的技术和管理经验",
+    "members": [
+        {
+            "id": 1,
+            "avatar": "images\/avatar1.jpg",
+            "name": "张明123",
+            "position": "创始人兼CEO",
+            "description": "拥有20年IT行业经验，曾任多家知名科技公司高管123",
+            "social_type": "QQ",
+            "social_media": "2956553638",
+            "email": "2956553638@qq.com"
+        },
+        {
+            "id": 2,
+            "avatar": "images\/avatar2.jpg",
+            "name": "李强",
+            "position": "CTO\/技术总监",
+            "description": "拥有15年软件开发经验，曾主导多个大型项目研发",
+            "social_type": "QQ",
+            "social_media": "#",
+            "email": "#"
+        },
+        {
+            "id": 3,
+            "avatar": "images\/avatar3.jpg",
+            "name": "王丽",
+            "position": "产品总监",
+            "description": "10年产品管理经验，精通用户体验设计和产品规划",
+            "social_type": "QQ",
+            "social_media": "#",
+            "email": "#"
+        },
+        {
+            "id": 4,
+            "avatar": "images\/avatar1.jpg",
+            "name": "赵伟",
+            "position": "市场总监",
+            "description": "12年市场营销经验，擅长品牌建设和市场策略",
+            "social_type": "QQ",
+            "social_media": "#",
+            "email": "#"
+        },
+        {
+            "id": 5,
+            "avatar": "images\/avatar1.jpg",
+            "name": "新成员",
+            "position": "职位",
+            "description": "个人简介",
+            "social_type": "QQ",
+            "social_media": "#",
+            "email": "#"
+        }
+    ]
+}

@@ -1,0 +1,35 @@
+{
+    "title": "战略合作伙伴",
+    "partners": [
+        {
+            "icon": "bi bi-microsoft",
+            "name": "微软",
+            "description": "云计算与AI技术合作伙伴",
+            "logo": "./images/th.png"
+        },
+        {
+            "icon": "bi bi-amazon",
+            "name": "亚马逊",
+            "description": "云服务战略合作伙伴",
+            "logo": "https://devsky.oss-cn-beijing.aliyuncs.com/2024/10/20241006152549813.png"
+        },
+        {
+            "icon": "bi bi-google",
+            "name": "谷歌",
+            "description": "AI技术研发合作伙伴",
+            "logo": ""
+        },
+        {
+            "icon": "bi bi-apple",
+            "name": "苹果",
+            "description": "移动应用开发合作伙伴",
+            "logo": ""
+        },
+        {
+            "name": "新战略合作伙伴",
+            "description": "待定合作内容",
+            "icon": "bi bi-building",
+            "logo": ""
+        }
+    ]
+}

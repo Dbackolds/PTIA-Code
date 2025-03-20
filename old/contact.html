@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>联系我们 - 未来科技</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/custom.css">
+    <link rel="stylesheet" href="css/bootstrap-icons/bootstrap-icons.css">
+    <link href="css/bootstrap/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- 顶部导航栏 -->
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top shadow-sm">
+            <div class="container">
+                <a class="navbar-brand" href="index.html">
+                    <img src="images/logo.png" alt="未来科技" class="logo" width="120">
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav me-auto">
+                        <!-- 导航菜单将由JavaScript动态加载 -->
+                    </ul>
+                    <div class="d-flex">
+                        <!-- 登录按钮将由JavaScript动态加载 -->
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- 页面标题 -->
+    <section class="page-title-section py-5 bg-light">
+        <div class="container mt-5 pt-3">
+            <h1 class="text-center mb-3">联系我们</h1>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb justify-content-center">
+                    <li class="breadcrumb-item"><a href="index.html">首页</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">联系我们</li>
+                </ol>
+            </nav>
+        </div>
+    </section>
+
+    <!-- 联系信息 -->
+    <section class="contact-info-section py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 mb-4 mb-lg-0">
+                    <h2 class="mb-4">联系方式</h2>
+                    <p class="lead mb-4">我们期待听到您的声音，无论是咨询、合作还是建议，都欢迎与我们联系。</p>
+                    <div class="contact-info">
+                        <div class="contact-item d-flex align-items-start mb-4">
+                            <div class="contact-icon me-3">
+                                <i class="bi bi-geo-alt fs-4 text-primary"></i>
+                            </div>
+                            <div>
+                                <h5>公司地址</h5>
+                                <p>北京市海淀区中关村科技园区8号楼</p>
+                            </div>
+                        </div>
+                        <div class="contact-item d-flex align-items-start mb-4">
+                            <div class="contact-icon me-3">
+                                <i class="bi bi-telephone fs-4 text-primary"></i>
+                            </div>
+                            <div>
+                                <h5>电话</h5>
+                                <p>400-123-4567</p>
+                            </div>
+                        </div>
+                        <div class="contact-item d-flex align-items-start mb-4">
+                            <div class="contact-icon me-3">
+                                <i class="bi bi-envelope fs-4 text-primary"></i>
+                            </div>
+                            <div>
+                                <h5>电子邮箱</h5>
+                                <p>contact@future-tech.com</p>
+                            </div>
+                        </div>
+                        <div class="contact-item d-flex align-items-start">
+                            <div class="contact-icon me-3">
+                                <i class="bi bi-clock fs-4 text-primary"></i>
+                            </div>
+                            <div>
+                                <h5>工作时间</h5>
+                                <p>周一至周五 9:00-18:00</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="social-media mt-4">
+                        <h5>关注我们</h5>
+                        <div class="social-icons mt-3">
+                            <a href="#" class="me-3"><i class="bi bi-facebook fs-4"></i></a>
+                            <a href="#" class="me-3"><i class="bi bi-twitter fs-4"></i></a>
+                            <a href="#" class="me-3"><i class="bi bi-linkedin fs-4"></i></a>
+                            <a href="#"><i class="bi bi-instagram fs-4"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="feature-card text-center p-4 h-100">
+                        <h3 class="mb-4">发送消息</h3>
+                        <form id="contactForm">
+                            <div class="mb-3">
+                                <label for="name" class="form-label">姓名</label>
+                                <input type="text" class="form-control" id="name" placeholder="请输入您的姓名" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="email" class="form-label">电子邮箱</label>
+                                <input type="email" class="form-control" id="email" placeholder="请输入您的电子邮箱" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="phone" class="form-label">电话</label>
+                                <input type="tel" class="form-control" id="phone" placeholder="请输入您的电话号码">
+                            </div>
+                            <div class="mb-3">
+                                <label for="subject" class="form-label">主题</label>
+                                <input type="text" class="form-control" id="subject" placeholder="请输入消息主题" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="message" class="form-label">消息内容</label>
+                                <textarea class="form-control" id="message" rows="5" placeholder="请输入您的消息内容" required></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary w-100">发送消息</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 地图 -->
+    <section class="map-section py-5 bg-light">
+        <div class="container">
+            <h2 class="text-center mb-5">我们的位置</h2>
+            <div class="map-wrapper rounded shadow-sm overflow-hidden">
+                <div class="ratio ratio-21x9">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3022.9663095343008!2d-74.00425878428698!3d40.71277937933185!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c25a165bedccab%3A0x2cb2ddf003b5ae01!2sWall%20St%2C%20New%20York%2C%20NY%2C%20USA!5e0!3m2!1sen!2suk!4v1586000017105!5m2!1sen!2suk" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="footer py-5 bg-dark text-white">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-lg-4">
+                    <img src="images/logo-white.png" alt="未来科技" class="logo mb-4" width="120">
+                    <p><!-- 公司信息将由JavaScript动态加载 --></p>
+                    <div class="social-icons mt-4">
+                        <!-- 社交媒体链接将由JavaScript动态加载 -->
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-4" id="quick-links-section">  
+                    <h5 class="mb-4">快速链接</h5>
+                    <ul class="list-unstyled">
+                        <!-- 快速链接将由JavaScript动态加载 -->
+                    </ul>
+                </div>
+                <div class="col-lg-2 col-md-4" id="solution-links-section">
+                    <h5 class="mb-4">解决方案</h5>
+                    <ul class="list-unstyled">
+                        <!-- 解决方案链接将由JavaScript动态加载 -->
+                    </ul>
+                </div>
+                <div class="col-lg-4 col-md-4">
+                    <h5 class="mb-4">联系我们</h5>
+                    <ul class="list-unstyled">
+                        <!-- 联系信息将由JavaScript动态加载 -->
+                    </ul>
+                </div>
+            </div>
+            <hr class="my-4">
+            <div class="row">
+                <div class="col-md-6">
+                    <p class="mb-md-0"><!-- 版权信息将由JavaScript动态加载 --></p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <p class="mb-0"><!-- ICP备案信息将由JavaScript动态加载 --></p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JavaScript 依赖 -->
+    <script src="js/bootstrap/bootstrap.bundle.min.js"></script>
+    <!-- 内容加载器脚本 -->
+    <script src="js/content-loader.js"></script>
+</body>
+</html>

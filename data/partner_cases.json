@@ -1,0 +1,41 @@
+{
+    "title": "合作案例",
+    "cases": [
+        {
+            "image": "images/case1.jpg",
+            "title": "某大型银行数字化转型项目",
+            "description": "与微软合作，为客户提供全面的数字化转型解决方案，包括核心系统升级、数据中台建设和智能客服系统实施。",
+            "partner_icon": "bi bi-microsoft",
+            "partner_name": "微软"
+        },
+        {
+            "image": "images/case2.jpg",
+            "title": "某制造企业智能工厂项目",
+            "description": "与英伟达、英特尔合作，为客户打造智能工厂解决方案，实现生产过程自动化、智能化，提升生产效率30%。",
+            "partners": [
+                {
+                    "icon": "bi bi-nvidia",
+                    "name": "英伟达"
+                },
+                {
+                    "icon": "bi bi-intel",
+                    "name": "英特尔"
+                }
+            ]
+        },
+        {
+            "image": "images/case3.jpg",
+            "title": "某零售集团智能分析平台",
+            "description": "与谷歌合作，为客户构建智能数据分析平台，通过AI算法分析消费者行为，优化商品结构，提升销售额25%。",
+            "partner_icon": "bi bi-google",
+            "partner_name": "谷歌"
+        },
+        {
+            "title": "新合作案例",
+            "description": "描述该合作案例的详细信息...",
+            "image": "images/case1.jpg",
+            "partner_name": "合作伙伴名称",
+            "partner_icon": "bi bi-building"
+        }
+    ]
+}

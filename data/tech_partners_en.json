@@ -1,0 +1,47 @@
+{
+    "title": "Technology Partners",
+    "partners": [
+        {
+            "id": "0",
+            "name": "NVIDIA",
+            "icon": "bi bi-nvidia",
+            "logo": "./images/th.png"
+        },
+        {
+            "id": "1",
+            "name": "Intel",
+            "icon": "bi bi-intel",
+            "logo": ""
+        },
+        {
+            "id": "2",
+            "name": "Oracle",
+            "icon": "bi bi-oracle",
+            "logo": "https://devsky.oss-cn-beijing.aliyuncs.com/2024/10/20241006152549813.png"
+        },
+        {
+            "id": "3",
+            "name": "IBM",
+            "icon": "bi bi-ibm",
+            "logo": ""
+        },
+        {
+            "id": "4",
+            "name": "Meta",
+            "icon": "bi bi-meta",
+            "logo": ""
+        },
+        {
+            "id": "5",
+            "name": "Tesla 11",
+            "icon": "bi bi-tesla",
+            "logo": ""
+        },
+        {
+            "id": "6",
+            "name": "New Technology Partner",
+            "icon": "bi bi-cpu",
+            "logo": ""
+        }
+    ]
+}
