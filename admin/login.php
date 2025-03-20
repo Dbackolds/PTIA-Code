@@ -20,7 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $password = isset($_POST['password']) ? $_POST['password'] : '';
     
     // 这里应该使用更安全的验证方式，如数据库验证、密码哈希等
-    // 这里仅作为示例
+    // 这里修改账号密码
     if ($username === 'admin' && $password === 'admin123') {
         // 登录成功
         $_SESSION['admin_logged_in'] = true;
