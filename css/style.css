@@ -1,0 +1,2742 @@
+/* 全局样式 */
+body {
+    font-family: 'Segoe UI', 'Microsoft YaHei', sans-serif;
+    color: #333;
+    line-height: 1.6;
+}
+
+/* 导航栏样式 */
+.navbar {
+    padding: 15px 0;
+    transition: all 0.3s ease;
+}
+
+.navbar-brand img {
+    transition: all 0.3s ease;
+}
+
+.nav-link {
+    font-weight: 500;
+    padding: 8px 15px !important;
+    transition: all 0.2s ease;
+}
+
+.nav-link:hover {
+    color: #0d6efd !important;
+}
+
+/* 主轮播图样式 */
+.hero-section {
+    margin-top: 76px;
+}
+
+.carousel-item {
+    height: 500px;
+    background-size: cover;
+    background-position: center;
+}
+
+.carousel-item img {
+    object-fit: cover;
+    height: 100%;
+}
+
+.carousel-caption {
+    bottom: 20%;
+    padding: 20px;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+    max-width: 80%;
+    margin: 0 auto;
+}
+
+.carousel-caption h2 {
+    font-size: 2.2rem;
+    font-weight: 700;
+    margin-bottom: 15px;
+}
+
+/* 公告栏样式 */
+.announcement-section {
+    border-bottom: 1px solid #eee;
+}
+
+.announcement-text {
+    font-size: 0.9rem;
+}
+
+/* 产品服务卡片样式 */
+.card {
+    transition: all 0.3s ease;
+    border: none;
+    overflow: hidden;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1) !important;
+}
+
+.icon-wrapper {
+    height: 80px;
+    width: 80px;
+    line-height: 80px;
+    margin: 0 auto;
+    border-radius: 50%;
+    background-color: rgba(13, 110, 253, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* 特性卡片样式 */
+.feature-card {
+    background-color: white;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+}
+
+.feature-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.icon-circle {
+    height: 70px;
+    width: 70px;
+    line-height: 70px;
+    margin: 0 auto;
+    border-radius: 50%;
+    background-color: rgba(13, 110, 253, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8rem;
+}
+
+/* 客户案例样式 */
+.case-studies .card-img-top {
+    height: 180px;
+    object-fit: cover;
+}
+
+/* 客户评价样式 */
+.testimonial-item {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+}
+
+.avatar img {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border: 3px solid #0d6efd;
+}
+
+/* 价格计划样式 */
+.price-tag {
+    font-weight: 700;
+}
+
+/* 页脚样式 */
+.footer {
+    background-color: #212529;
+}
+
+.footer h5 {
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+.footer ul li {
+    margin-bottom: 10px;
+}
+
+.social-icons a {
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+}
+
+.social-icons a:hover {
+    color: #0d6efd !important;
+}
+
+/* 响应式调整 */
+@media (max-width: 992px) {
+    .carousel-item {
+        height: 400px;
+    }
+    
+    .carousel-caption h2 {
+        font-size: 1.8rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .carousel-item {
+        height: 350px;
+    }
+    
+    .carousel-caption {
+        bottom: 10%;
+    }
+    
+    .carousel-caption h2 {
+        font-size: 1.5rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .hero-section {
+        margin-top: 66px;
+    }
+    
+    .carousel-item {
+        height: 300px;
+    }
+    
+    .carousel-caption h2 {
+        font-size: 1.2rem;
+    }
+    
+    .carousel-caption p {
+        font-size: 0.9rem;
+    }
+    
+    .btn-lg {
+        padding: 0.5rem 1rem;
+        font-size: 0.9rem;
+    }
+}
+
+/* 卡片样式增强 */
+.card, .product-card {
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.card:hover, .product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.12);
+    border-color: rgba(13, 110, 253, 0.2);
+}
+
+/* 卡片内容样式优化 */
+.card-body {
+    padding: 1.5rem;
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.icon-wrapper {
+    height: 80px;
+    width: 80px;
+    line-height: 80px;
+    margin: 0 auto;
+    border-radius: 50%;
+    background-color: rgba(13, 110, 253, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* 特性卡片样式 */
+.feature-card {
+    background-color: white;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+}
+
+.feature-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.icon-circle {
+    height: 70px;
+    width: 70px;
+    line-height: 70px;
+    margin: 0 auto;
+    border-radius: 50%;
+    background-color: rgba(13, 110, 253, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8rem;
+}
+
+/* 客户案例样式 */
+.case-studies .card-img-top {
+    height: 180px;
+    object-fit: cover;
+}
+
+/* 客户评价样式 */
+.testimonial-item {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+}
+
+.avatar img {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border: 3px solid #0d6efd;
+}
+
+/* 价格计划样式 */
+.price-tag {
+    font-weight: 700;
+}
+
+/* 页脚样式 */
+.footer {
+    background-color: #212529;
+}
+
+.footer h5 {
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+.footer ul li {
+    margin-bottom: 10px;
+}
+
+.social-icons a {
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+}
+
+.social-icons a:hover {
+    color: #0d6efd !important;
+}
+
+/* 响应式调整 */
+@media (max-width: 992px) {
+    .carousel-item {
+        height: 400px;
+    }
+    
+    .carousel-caption h2 {
+        font-size: 1.8rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .carousel-item {
+        height: 350px;
+    }
+    
+    .carousel-caption {
+        bottom: 10%;
+    }
+    
+    .carousel-caption h2 {
+        font-size: 1.5rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .hero-section {
+        margin-top: 66px;
+    }
+    
+    .carousel-item {
+        height: 300px;
+    }
+    
+    .carousel-caption h2 {
+        font-size: 1.2rem;
+    }
+    
+    .carousel-caption p {
+        font-size: 0.9rem;
+    }
+    
+    .btn-lg {
+        padding: 0.5rem 1rem;
+        font-size: 0.9rem;
+    }
+}
+
+.icon-wrapper {
+    height: 80px;
+    width: 80px;
+    line-height: 80px;
+    margin: 0 auto;
+    border-radius: 50%;
+    background-color: rgba(13, 110, 253, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* 特性卡片样式 */
+.feature-card {
+    background-color: white;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+}
+
+.feature-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.icon-circle {
+    height: 70px;
+    width: 70px;
+    line-height: 70px;
+    margin: 0 auto;
+    border-radius: 50%;
+    background-color: rgba(13, 110, 253, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8rem;
+}
+
+/* 客户案例样式 */
+.case-studies .card-img-top {
+    height: 180px;
+    object-fit: cover;
+}
+
+/* 客户评价样式 */
+.testimonial-item {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+}
+
+.avatar img {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border: 3px solid #0d6efd;
+}
+
+/* 价格计划样式 */
+.price-tag {
+    font-weight: 700;
+}
+
+/* 页脚样式 */
+.footer {
+    background-color: #212529;
+}
+
+.footer h5 {
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+.footer ul li {
+    margin-bottom: 10px;
+}
+
+.social-icons a {
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+}
+
+.social-icons a:hover {
+    color: #0d6efd !important;
+}
+
+/* 响应式调整 */
+@media (max-width: 992px) {
+    .carousel-item {
+        height: 400px;
+    }
+    
+    .carousel-caption h2 {
+        font-size: 1.8rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .carousel-item {
+        height: 350px;
+    }
+    
+    .carousel-caption {
+        bottom: 10%;
+    }
+    
+    .carousel-caption h2 {
+        font-size: 1.5rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .hero-section {
+        margin-top: 66px;
+    }
+    
+    .carousel-item {
+        height: 300px;
+    }
+    
+    .carousel-caption h2 {
+        font-size: 1.2rem;
+    }
+    
+    .carousel-caption p {
+        font-size: 0.9rem;
+    }
+    
+    .btn-lg {
+        padding: 0.5rem 1rem;
+        font-size: 0.9rem;
+    }
+}
+
+.icon-wrapper {
+    height: 80px;
+    width: 80px;
+    line-height: 80px;
+    margin: 0 auto;
+    border-radius: 50%;
+    background-color: rgba(13, 110, 253, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* 特性卡片样式 */
+.feature-card {
+    background-color: white;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+}
+
+.feature-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.icon-circle {
+    height: 70px;
+    width: 70px;
+    line-height: 70px;
+    margin: 0 auto;
+    border-radius: 50%;
+    background-color: rgba(13, 110, 253, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8rem;
+}
+
+/* 客户案例样式 */
+.case-studies .card-img-top {
+    height: 180px;
+    object-fit: cover;
+}
+
+/* 客户评价样式 */
+.testimonial-item {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+}
+
+.avatar img {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border: 3px solid #0d6efd;
+}
+
+/* 价格计划样式 */
+.price-tag {
+    font-weight: 700;
+}
+
+/* 页脚样式 */
+.footer {
+    background-color: #212529;
+}
+
+.footer h5 {
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+.footer ul li {
+    margin-bottom: 10px;
+}
+
+.social-icons a {
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+}
+
+.social-icons a:hover {
+    color: #0d6efd !important;
+}
+
+/* 响应式调整 */
+@media (max-width: 992px) {
+    .carousel-item {
+        height: 400px;
+    }
+    
+    .carousel-caption h2 {
+        font-size: 1.8rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .carousel-item {
+        height: 350px;
+    }
+    
+    .carousel-caption {
+        bottom: 10%;
+    }
+    
+    .carousel-caption h2 {
+        font-size: 1.5rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .hero-section {
+        margin-top: 66px;
+    }
+    
+    .carousel-item {
+        height: 300px;
+    }
+    
+    .carousel-caption h2 {
+        font-size: 1.2rem;
+    }
+    
+    .carousel-caption p {
+        font-size: 0.9rem;
+    }
+    
+    .btn-lg {
+        padding: 0.5rem 1rem;
+        font-size: 0.9rem;
+    }
+}
+
+.icon-wrapper {
+    height: 80px;
+    width: 80px;
+    line-height: 80px;
+    margin: 0 auto;
+    border-radius: 50%;
+    background-color: rgba(13, 110, 253, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* 特性卡片样式 */
+.feature-card {
+    background-color: white;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+}
+
+.feature-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.icon-circle {
+    height: 70px;
+    width: 70px;
+    line-height: 70px;
+    margin: 0 auto;
+    border-radius: 50%;
+    background-color: rgba(13, 110, 253, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8rem;
+}
+
+/* 客户案例样式 */
+.case-studies .card-img-top {
+    height: 180px;
+    object-fit: cover;
+}
+
+/* 客户评价样式 */
+.testimonial-item {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+}
+
+.avatar img {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border: 3px solid #0d6efd;
+}
+
+/* 价格计划样式 */
+.price-tag {
+    font-weight: 700;
+}
+
+/* 页脚样式 */
+.footer {
+    background-color: #212529;
+}
+
+.footer h5 {
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+.footer ul li {
+    margin-bottom: 10px;
+}
+
+.social-icons a {
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+}
+
+.social-icons a:hover {
+    color: #0d6efd !important;
+}
+
+/* 响应式调整 */
+@media (max-width: 992px) {
+    .carousel-item {
+        height: 400px;
+    }
+    
+    .carousel-caption h2 {
+        font-size: 1.8rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .carousel-item {
+        height: 350px;
+    }
+    
+    .carousel-caption {
+        bottom: 10%;
+    }
+    
+    .carousel-caption h2 {
+        font-size: 1.5rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .hero-section {
+        margin-top: 66px;
+    }
+    
+    .carousel-item {
+        height: 300px;
+    }
+    
+    .carousel-caption h2 {
+        font-size: 1.2rem;
+    }
+    
+    .carousel-caption p {
+        font-size: 0.9rem;
+    }
+    
+    .btn-lg {
+        padding: 0.5rem 1rem;
+        font-size: 0.9rem;
+    }
+}
+
+.icon-wrapper {
+    height: 80px;
+    width: 80px;
+    line-height: 80px;
+    margin: 0 auto;
+    border-radius: 50%;
+    background-color: rgba(13, 110, 253, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* 特性卡片样式 */
+.feature-card {
+    background-color: white;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+}
+
+.feature-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.icon-circle {
+    height: 70px;
+    width: 70px;
+    line-height: 70px;
+    margin: 0 auto;
+    border-radius: 50%;
+    background-color: rgba(13, 110, 253, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8rem;
+}
+
+/* 客户案例样式 */
+.case-studies .card-img-top {
+    height: 180px;
+    object-fit: cover;
+}
+
+/* 客户评价样式 */
+.testimonial-item {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+}
+
+.avatar img {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border: 3px solid #0d6efd;
+}
+
+/* 价格计划样式 */
+.price-tag {
+    font-weight: 700;
+}
+
+/* 页脚样式 */
+.footer {
+    background-color: #212529;
+}
+
+.footer h5 {
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+.footer ul li {
+    margin-bottom: 10px;
+}
+
+.social-icons a {
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+}
+
+.social-icons a:hover {
+    color: #0d6efd !important;
+}
+
+/* 响应式调整 */
+@media (max-width: 992px) {
+    .carousel-item {
+        height: 400px;
+    }
+    
+    .carousel-caption h2 {
+        font-size: 1.8rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .carousel-item {
+        height: 350px;
+    }
+    
+    .carousel-caption {
+        bottom: 10%;
+    }
+    
+    .carousel-caption h2 {
+        font-size: 1.5rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .hero-section {
+        margin-top: 66px;
+    }
+    
+    .carousel-item {
+        height: 300px;
+    }
+    
+    .carousel-caption h2 {
+        font-size: 1.2rem;
+    }
+    
+    .carousel-caption p {
+        font-size: 0.9rem;
+    }
+    
+    .btn-lg {
+        padding: 0.5rem 1rem;
+        font-size: 0.9rem;
+    }
+}
+
+.icon-wrapper {
+    height: 80px;
+    width: 80px;
+    line-height: 80px;
+    margin: 0 auto;
+    border-radius: 50%;
+    background-color: rgba(13, 110, 253, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* 特性卡片样式 */
+.feature-card {
+    background-color: white;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+}
+
+.feature-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.icon-circle {
+    height: 70px;
+    width: 70px;
+    line-height: 70px;
+    margin: 0 auto;
+    border-radius: 50%;
+    background-color: rgba(13, 110, 253, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8rem;
+}
+
+/* 客户案例样式 */
+.case-studies .card-img-top {
+    height: 180px;
+    object-fit: cover;
+}
+
+/* 客户评价样式 */
+.testimonial-item {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+}
+
+.avatar img {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border: 3px solid #0d6efd;
+}
+
+/* 价格计划样式 */
+.price-tag {
+    font-weight: 700;
+}
+
+/* 页脚样式 */
+.footer {
+    background-color: #212529;
+}
+
+.footer h5 {
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+.footer ul li {
+    margin-bottom: 10px;
+}
+
+.social-icons a {
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+}
+
+.social-icons a:hover {
+    color: #0d6efd !important;
+}
+
+/* 响应式调整 */
+@media (max-width: 992px) {
+    .carousel-item {
+        height: 400px;
+    }
+    
+    .carousel-caption h2 {
+        font-size: 1.8rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .carousel-item {
+        height: 350px;
+    }
+    
+    .carousel-caption {
+        bottom: 10%;
+    }
+    
+    .carousel-caption h2 {
+        font-size: 1.5rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .hero-section {
+        margin-top: 66px;
+    }
+    
+    .carousel-item {
+        height: 300px;
+    }
+    
+    .carousel-caption h2 {
+        font-size: 1.2rem;
+    }
+    
+    .carousel-caption p {
+        font-size: 0.9rem;
+    }
+    
+    .btn-lg {
+        padding: 0.5rem 1rem;
+        font-size: 0.9rem;
+    }
+}
+
+.icon-wrapper {
+    height: 80px;
+    width: 80px;
+    line-height: 80px;
+    margin: 0 auto;
+    border-radius: 50%;
+    background-color: rgba(13, 110, 253, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* 特性卡片样式 */
+.feature-card {
+    background-color: white;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+}
+
+.feature-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.icon-circle {
+    height: 70px;
+    width: 70px;
+    line-height: 70px;
+    margin: 0 auto;
+    border-radius: 50%;
+    background-color: rgba(13, 110, 253, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8rem;
+}
+
+/* 客户案例样式 */
+.case-studies .card-img-top {
+    height: 180px;
+    object-fit: cover;
+}
+
+/* 客户评价样式 */
+.testimonial-item {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+}
+
+.avatar img {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border: 3px solid #0d6efd;
+}
+
+/* 价格计划样式 */
+.price-tag {
+    font-weight: 700;
+}
+
+/* 页脚样式 */
+.footer {
+    background-color: #212529;
+}
+
+.footer h5 {
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+.footer ul li {
+    margin-bottom: 10px;
+}
+
+.social-icons a {
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+}
+
+.social-icons a:hover {
+    color: #0d6efd !important;
+}
+
+/* 响应式调整 */
+@media (max-width: 992px) {
+    .carousel-item {
+        height: 400px;
+    }
+    
+    .carousel-caption h2 {
+        font-size: 1.8rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .carousel-item {
+        height: 350px;
+    }
+    
+    .carousel-caption {
+        bottom: 10%;
+    }
+    
+    .carousel-caption h2 {
+        font-size: 1.5rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .hero-section {
+        margin-top: 66px;
+    }
+    
+    .carousel-item {
+        height: 300px;
+    }
+    
+    .carousel-caption h2 {
+        font-size: 1.2rem;
+    }
+    
+    .carousel-caption p {
+        font-size: 0.9rem;
+    }
+    
+    .btn-lg {
+        padding: 0.5rem 1rem;
+        font-size: 0.9rem;
+    }
+}
+
+.icon-wrapper {
+    height: 80px;
+    width: 80px;
+    line-height: 80px;
+    margin: 0 auto;
+    border-radius: 50%;
+    background-color: rgba(13, 110, 253, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* 特性卡片样式 */
+.feature-card {
+    background-color: white;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+}
+
+.feature-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.icon-circle {
+    height: 70px;
+    width: 70px;
+    line-height: 70px;
+    margin: 0 auto;
+    border-radius: 50%;
+    background-color: rgba(13, 110, 253, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8rem;
+}
+
+/* 客户案例样式 */
+.case-studies .card-img-top {
+    height: 180px;
+    object-fit: cover;
+}
+
+/* 客户评价样式 */
+.testimonial-item {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+}
+
+.avatar img {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border: 3px solid #0d6efd;
+}
+
+/* 价格计划样式 */
+.price-tag {
+    font-weight: 700;
+}
+
+/* 页脚样式 */
+.footer {
+    background-color: #212529;
+}
+
+.footer h5 {
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+.footer ul li {
+    margin-bottom: 10px;
+}
+
+.social-icons a {
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+}
+
+.social-icons a:hover {
+    color: #0d6efd !important;
+}
+
+/* 响应式调整 */
+@media (max-width: 992px) {
+    .carousel-item {
+        height: 400px;
+    }
+    
+    .carousel-caption h2 {
+        font-size: 1.8rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .carousel-item {
+        height: 350px;
+    }
+    
+    .carousel-caption {
+        bottom: 10%;
+    }
+    
+    .carousel-caption h2 {
+        font-size: 1.5rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .hero-section {
+        margin-top: 66px;
+    }
+    
+    .carousel-item {
+        height: 300px;
+    }
+    
+    .carousel-caption h2 {
+        font-size: 1.2rem;
+    }
+    
+    .carousel-caption p {
+        font-size: 0.9rem;
+    }
+    
+    .btn-lg {
+        padding: 0.5rem 1rem;
+        font-size: 0.9rem;
+    }
+}
+
+.icon-wrapper {
+    height: 80px;
+    width: 80px;
+    line-height: 80px;
+    margin: 0 auto;
+    border-radius: 50%;
+    background-color: rgba(13, 110, 253, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* 特性卡片样式 */
+.feature-card {
+    background-color: white;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+}
+
+.feature-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.icon-circle {
+    height: 70px;
+    width: 70px;
+    line-height: 70px;
+    margin: 0 auto;
+    border-radius: 50%;
+    background-color: rgba(13, 110, 253, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8rem;
+}
+
+/* 客户案例样式 */
+.case-studies .card-img-top {
+    height: 180px;
+    object-fit: cover;
+}
+
+/* 客户评价样式 */
+.testimonial-item {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+}
+
+.avatar img {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border: 3px solid #0d6efd;
+}
+
+/* 价格计划样式 */
+.price-tag {
+    font-weight: 700;
+}
+
+/* 页脚样式 */
+.footer {
+    background-color: #212529;
+}
+
+.footer h5 {
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+.footer ul li {
+    margin-bottom: 10px;
+}
+
+.social-icons a {
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+}
+
+.social-icons a:hover {
+    color: #0d6efd !important;
+}
+
+/* 响应式调整 */
+@media (max-width: 992px) {
+    .carousel-item {
+        height: 400px;
+    }
+    
+    .carousel-caption h2 {
+        font-size: 1.8rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .carousel-item {
+        height: 350px;
+    }
+    
+    .carousel-caption {
+        bottom: 10%;
+    }
+    
+    .carousel-caption h2 {
+        font-size: 1.5rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .hero-section {
+        margin-top: 66px;
+    }
+    
+    .carousel-item {
+        height: 300px;
+    }
+    
+    .carousel-caption h2 {
+        font-size: 1.2rem;
+    }
+    
+    .carousel-caption p {
+        font-size: 0.9rem;
+    }
+    
+    .btn-lg {
+        padding: 0.5rem 1rem;
+        font-size: 0.9rem;
+    }
+}
+
+.icon-wrapper {
+    height: 80px;
+    width: 80px;
+    line-height: 80px;
+    margin: 0 auto;
+    border-radius: 50%;
+    background-color: rgba(13, 110, 253, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* 特性卡片样式 */
+.feature-card {
+    background-color: white;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+}
+
+.feature-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.icon-circle {
+    height: 70px;
+    width: 70px;
+    line-height: 70px;
+    margin: 0 auto;
+    border-radius: 50%;
+    background-color: rgba(13, 110, 253, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8rem;
+}
+
+/* 客户案例样式 */
+.case-studies .card-img-top {
+    height: 180px;
+    object-fit: cover;
+}
+
+/* 客户评价样式 */
+.testimonial-item {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+}
+
+.avatar img {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border: 3px solid #0d6efd;
+}
+
+/* 价格计划样式 */
+.price-tag {
+    font-weight: 700;
+}
+
+/* 页脚样式 */
+.footer {
+    background-color: #212529;
+}
+
+.footer h5 {
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+.footer ul li {
+    margin-bottom: 10px;
+}
+
+.social-icons a {
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+}
+
+.social-icons a:hover {
+    color: #0d6efd !important;
+}
+
+/* 响应式调整 */
+@media (max-width: 992px) {
+    .carousel-item {
+        height: 400px;
+    }
+    
+    .carousel-caption h2 {
+        font-size: 1.8rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .carousel-item {
+        height: 350px;
+    }
+    
+    .carousel-caption {
+        bottom: 10%;
+    }
+    
+    .carousel-caption h2 {
+        font-size: 1.5rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .hero-section {
+        margin-top: 66px;
+    }
+    
+    .carousel-item {
+        height: 300px;
+    }
+    
+    .carousel-caption h2 {
+        font-size: 1.2rem;
+    }
+    
+    .carousel-caption p {
+        font-size: 0.9rem;
+    }
+    
+    .btn-lg {
+        padding: 0.5rem 1rem;
+        font-size: 0.9rem;
+    }
+}
+
+.icon-wrapper {
+    height: 80px;
+    width: 80px;
+    line-height: 80px;
+    margin: 0 auto;
+    border-radius: 50%;
+    background-color: rgba(13, 110, 253, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* 特性卡片样式 */
+.feature-card {
+    background-color: white;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+}
+
+.feature-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.icon-circle {
+    height: 70px;
+    width: 70px;
+    line-height: 70px;
+    margin: 0 auto;
+    border-radius: 50%;
+    background-color: rgba(13, 110, 253, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8rem;
+}
+
+/* 客户案例样式 */
+.case-studies .card-img-top {
+    height: 180px;
+    object-fit: cover;
+}
+
+/* 客户评价样式 */
+.testimonial-item {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+}
+
+.avatar img {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border: 3px solid #0d6efd;
+}
+
+/* 价格计划样式 */
+.price-tag {
+    font-weight: 700;
+}
+
+/* 页脚样式 */
+.footer {
+    background-color: #212529;
+}
+
+.footer h5 {
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+.footer ul li {
+    margin-bottom: 10px;
+}
+
+.social-icons a {
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+}
+
+.social-icons a:hover {
+    color: #0d6efd !important;
+}
+
+/* 响应式调整 */
+@media (max-width: 992px) {
+    .carousel-item {
+        height: 400px;
+    }
+    
+    .carousel-caption h2 {
+        font-size: 1.8rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .carousel-item {
+        height: 350px;
+    }
+    
+    .carousel-caption {
+        bottom: 10%;
+    }
+    
+    .carousel-caption h2 {
+        font-size: 1.5rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .hero-section {
+        margin-top: 66px;
+    }
+    
+    .carousel-item {
+        height: 300px;
+    }
+    
+    .carousel-caption h2 {
+        font-size: 1.2rem;
+    }
+    
+    .carousel-caption p {
+        font-size: 0.9rem;
+    }
+    
+    .btn-lg {
+        padding: 0.5rem 1rem;
+        font-size: 0.9rem;
+    }
+}
+
+.icon-wrapper {
+    height: 80px;
+    width: 80px;
+    line-height: 80px;
+    margin: 0 auto;
+    border-radius: 50%;
+    background-color: rgba(13, 110, 253, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* 特性卡片样式 */
+.feature-card {
+    background-color: white;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+}
+
+.feature-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.icon-circle {
+    height: 70px;
+    width: 70px;
+    line-height: 70px;
+    margin: 0 auto;
+    border-radius: 50%;
+    background-color: rgba(13, 110, 253, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8rem;
+}
+
+/* 客户案例样式 */
+.case-studies .card-img-top {
+    height: 180px;
+    object-fit: cover;
+}
+
+/* 客户评价样式 */
+.testimonial-item {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+}
+
+.avatar img {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border: 3px solid #0d6efd;
+}
+
+/* 价格计划样式 */
+.price-tag {
+    font-weight: 700;
+}
+
+/* 页脚样式 */
+.footer {
+    background-color: #212529;
+}
+
+.footer h5 {
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+.footer ul li {
+    margin-bottom: 10px;
+}
+
+.social-icons a {
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+}
+
+.social-icons a:hover {
+    color: #0d6efd !important;
+}
+
+/* 响应式调整 */
+@media (max-width: 992px) {
+    .carousel-item {
+        height: 400px;
+    }
+    
+    .carousel-caption h2 {
+        font-size: 1.8rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .carousel-item {
+        height: 350px;
+    }
+    
+    .carousel-caption {
+        bottom: 10%;
+    }
+    
+    .carousel-caption h2 {
+        font-size: 1.5rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .hero-section {
+        margin-top: 66px;
+    }
+    
+    .carousel-item {
+        height: 300px;
+    }
+    
+    .carousel-caption h2 {
+        font-size: 1.2rem;
+    }
+    
+    .carousel-caption p {
+        font-size: 0.9rem;
+    }
+    
+    .btn-lg {
+        padding: 0.5rem 1rem;
+        font-size: 0.9rem;
+    }
+}
+
+.icon-wrapper {
+    height: 80px;
+    width: 80px;
+    line-height: 80px;
+    margin: 0 auto;
+    border-radius: 50%;
+    background-color: rgba(13, 110, 253, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* 特性卡片样式 */
+.feature-card {
+    background-color: white;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+}
+
+.feature-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.icon-circle {
+    height: 70px;
+    width: 70px;
+    line-height: 70px;
+    margin: 0 auto;
+    border-radius: 50%;
+    background-color: rgba(13, 110, 253, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8rem;
+}
+
+/* 客户案例样式 */
+.case-studies .card-img-top {
+    height: 180px;
+    object-fit: cover;
+}
+
+/* 客户评价样式 */
+.testimonial-item {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+}
+
+.avatar img {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border: 3px solid #0d6efd;
+}
+
+/* 价格计划样式 */
+.price-tag {
+    font-weight: 700;
+}
+
+/* 页脚样式 */
+.footer {
+    background-color: #212529;
+}
+
+.footer h5 {
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+.footer ul li {
+    margin-bottom: 10px;
+}
+
+.social-icons a {
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+}
+
+.social-icons a:hover {
+    color: #0d6efd !important;
+}
+
+/* 响应式调整 */
+@media (max-width: 992px) {
+    .carousel-item {
+        height: 400px;
+    }
+    
+    .carousel-caption h2 {
+        font-size: 1.8rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .carousel-item {
+        height: 350px;
+    }
+    
+    .carousel-caption {
+        bottom: 10%;
+    }
+    
+    .carousel-caption h2 {
+        font-size: 1.5rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .hero-section {
+        margin-top: 66px;
+    }
+    
+    .carousel-item {
+        height: 300px;
+    }
+    
+    .carousel-caption h2 {
+        font-size: 1.2rem;
+    }
+    
+    .carousel-caption p {
+        font-size: 0.9rem;
+    }
+    
+    .btn-lg {
+        padding: 0.5rem 1rem;
+        font-size: 0.9rem;
+    }
+}
+
+.icon-wrapper {
+    height: 80px;
+    width: 80px;
+    line-height: 80px;
+    margin: 0 auto;
+    border-radius: 50%;
+    background-color: rgba(13, 110, 253, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* 特性卡片样式 */
+.feature-card {
+    background-color: white;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+}
+
+.feature-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.icon-circle {
+    height: 70px;
+    width: 70px;
+    line-height: 70px;
+    margin: 0 auto;
+    border-radius: 50%;
+    background-color: rgba(13, 110, 253, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8rem;
+}
+
+/* 客户案例样式 */
+.case-studies .card-img-top {
+    height: 180px;
+    object-fit: cover;
+}
+
+/* 客户评价样式 */
+.testimonial-item {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+}
+
+.avatar img {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border: 3px solid #0d6efd;
+}
+
+/* 价格计划样式 */
+.price-tag {
+    font-weight: 700;
+}
+
+/* 页脚样式 */
+.footer {
+    background-color: #212529;
+}
+
+.footer h5 {
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+.footer ul li {
+    margin-bottom: 10px;
+}
+
+.social-icons a {
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+}
+
+.social-icons a:hover {
+    color: #0d6efd !important;
+}
+
+/* 响应式调整 */
+@media (max-width: 992px) {
+    .carousel-item {
+        height: 400px;
+    }
+    
+    .carousel-caption h2 {
+        font-size: 1.8rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .carousel-item {
+        height: 350px;
+    }
+    
+    .carousel-caption {
+        bottom: 10%;
+    }
+    
+    .carousel-caption h2 {
+        font-size: 1.5rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .hero-section {
+        margin-top: 66px;
+    }
+    
+    .carousel-item {
+        height: 300px;
+    }
+    
+    .carousel-caption h2 {
+        font-size: 1.2rem;
+    }
+    
+    .carousel-caption p {
+        font-size: 0.9rem;
+    }
+    
+    .btn-lg {
+        padding: 0.5rem 1rem;
+        font-size: 0.9rem;
+    }
+}
+
+.icon-wrapper {
+    height: 80px;
+    width: 80px;
+    line-height: 80px;
+    margin: 0 auto;
+    border-radius: 50%;
+    background-color: rgba(13, 110, 253, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* 特性卡片样式 */
+.feature-card {
+    background-color: white;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+}
+
+.feature-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.icon-circle {
+    height: 70px;
+    width: 70px;
+    line-height: 70px;
+    margin: 0 auto;
+    border-radius: 50%;
+    background-color: rgba(13, 110, 253, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8rem;
+}
+
+/* 客户案例样式 */
+.case-studies .card-img-top {
+    height: 180px;
+    object-fit: cover;
+}
+
+/* 客户评价样式 */
+.testimonial-item {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+}
+
+.avatar img {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border: 3px solid #0d6efd;
+}
+
+/* 价格计划样式 */
+.price-tag {
+    font-weight: 700;
+}
+
+/* 页脚样式 */
+.footer {
+    background-color: #212529;
+}
+
+.footer h5 {
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+.footer ul li {
+    margin-bottom: 10px;
+}
+
+.social-icons a {
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+}
+
+.social-icons a:hover {
+    color: #0d6efd !important;
+}
+
+/* 响应式调整 */
+@media (max-width: 992px) {
+    .carousel-item {
+        height: 400px;
+    }
+    
+    .carousel-caption h2 {
+        font-size: 1.8rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .carousel-item {
+        height: 350px;
+    }
+    
+    .carousel-caption {
+        bottom: 10%;
+    }
+    
+    .carousel-caption h2 {
+        font-size: 1.5rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .hero-section {
+        margin-top: 66px;
+    }
+    
+    .carousel-item {
+        height: 300px;
+    }
+    
+    .carousel-caption h2 {
+        font-size: 1.2rem;
+    }
+    
+    .carousel-caption p {
+        font-size: 0.9rem;
+    }
+    
+    .btn-lg {
+        padding: 0.5rem 1rem;
+        font-size: 0.9rem;
+    }
+}
+
+.icon-wrapper {
+    height: 80px;
+    width: 80px;
+    line-height: 80px;
+    margin: 0 auto;
+    border-radius: 50%;
+    background-color: rgba(13, 110, 253, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* 特性卡片样式 */
+.feature-card {
+    background-color: white;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+}
+
+.feature-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.icon-circle {
+    height: 70px;
+    width: 70px;
+    line-height: 70px;
+    margin: 0 auto;
+    border-radius: 50%;
+    background-color: rgba(13, 110, 253, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8rem;
+}
+
+/* 客户案例样式 */
+.case-studies .card-img-top {
+    height: 180px;
+    object-fit: cover;
+}
+
+/* 客户评价样式 */
+.testimonial-item {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+}
+
+.avatar img {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border: 3px solid #0d6efd;
+}
+
+/* 价格计划样式 */
+.price-tag {
+    font-weight: 700;
+}
+
+/* 页脚样式 */
+.footer {
+    background-color: #212529;
+}
+
+.footer h5 {
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+.footer ul li {
+    margin-bottom: 10px;
+}
+
+.social-icons a {
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+}
+
+.social-icons a:hover {
+    color: #0d6efd !important;
+}
+
+/* 响应式调整 */
+@media (max-width: 992px) {
+    .carousel-item {
+        height: 400px;
+    }
+    
+    .carousel-caption h2 {
+        font-size: 1.8rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .carousel-item {
+        height: 350px;
+    }
+    
+    .carousel-caption {
+        bottom: 10%;
+    }
+    
+    .carousel-caption h2 {
+        font-size: 1.5rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .hero-section {
+        margin-top: 66px;
+    }
+    
+    .carousel-item {
+        height: 300px;
+    }
+    
+    .carousel-caption h2 {
+        font-size: 1.2rem;
+    }
+    
+    .carousel-caption p {
+        font-size: 0.9rem;
+    }
+    
+    .btn-lg {
+        padding: 0.5rem 1rem;
+        font-size: 0.9rem;
+    }
+}
+
+.icon-wrapper {
+    height: 80px;
+    width: 80px;
+    line-height: 80px;
+    margin: 0 auto;
+    border-radius: 50%;
+    background-color: rgba(13, 110, 253, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* 特性卡片样式 */
+.feature-card {
+    background-color: white;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+}
+
+.feature-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.icon-circle {
+    height: 70px;
+    width: 70px;
+    line-height: 70px;
+    margin: 0 auto;
+    border-radius: 50%;
+    background-color: rgba(13, 110, 253, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8rem;
+}
+
+/* 客户案例样式 */
+.case-studies .card-img-top {
+    height: 180px;
+    object-fit: cover;
+}
+
+/* 客户评价样式 */
+.testimonial-item {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+}
+
+.avatar img {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border: 3px solid #0d6efd;
+}
+
+/* 价格计划样式 */
+.price-tag {
+    font-weight: 700;
+}
+
+/* 页脚样式 */
+.footer {
+    background-color: #212529;
+}
+
+.footer h5 {
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+.footer ul li {
+    margin-bottom: 10px;
+}
+
+.social-icons a {
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+}
+
+.social-icons a:hover {
+    color: #0d6efd !important;
+}
+
+/* 响应式调整 */
+@media (max-width: 992px) {
+    .carousel-item {
+        height: 400px;
+    }
+    
+    .carousel-caption h2 {
+        font-size: 1.8rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .carousel-item {
+        height: 350px;
+    }
+    
+    .carousel-caption {
+        bottom: 10%;
+    }
+    
+    .carousel-caption h2 {
+        font-size: 1.5rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .hero-section {
+        margin-top: 66px;
+    }
+    
+    .carousel-item {
+        height: 300px;
+    }
+    
+    .carousel-caption h2 {
+        font-size: 1.2rem;
+    }
+    
+    .carousel-caption p {
+        font-size: 0.9rem;
+    }
+    
+    .btn-lg {
+        padding: 0.5rem 1rem;
+        font-size: 0.9rem;
+    }
+}
+
+.icon-wrapper {
+    height: 80px;
+    width: 80px;
+    line-height: 80px;
+    margin: 0 auto;
+    border-radius: 50%;
+    background-color: rgba(13, 110, 253, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* 特性卡片样式 */
+.feature-card {
+    background-color: white;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+}
+
+.feature-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.icon-circle {
+    height: 70px;
+    width: 70px;
+    line-height: 70px;
+    margin: 0 auto;
+    border-radius: 50%;
+    background-color: rgba(13, 110, 253, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8rem;
+}
+
+/* 客户案例样式 */
+.case-studies .card-img-top {
+    height: 180px;
+    object-fit: cover;
+}
+
+/* 客户评价样式 */
+.testimonial-item {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+}
+
+.avatar img {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border: 3px solid #0d6efd;
+}
+
+/* 价格计划样式 */
+.price-tag {
+    font-weight: 700;
+}
+
+/* 页脚样式 */
+.footer {
+    background-color: #212529;
+}
+
+.footer h5 {
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+.footer ul li {
+    margin-bottom: 10px;
+}
+
+.social-icons a {
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+}
+
+.social-icons a:hover {
+    color: #0d6efd !important;
+}
+
+/* 响应式调整 */
+@media (max-width: 992px) {
+    .carousel-item {
+        height: 400px;
+    }
+    
+    .carousel-caption h2 {
+        font-size: 1.8rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .carousel-item {
+        height: 350px;
+    }
+    
+    .carousel-caption {
+        bottom: 10%;
+    }
+    
+    .carousel-caption h2 {
+        font-size: 1.5rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .hero-section {
+        margin-top: 66px;
+    }
+    
+    .carousel-item {
+        height: 300px;
+    }
+    
+    .carousel-caption h2 {
+        font-size: 1.2rem;
+    }
+    
+    .carousel-caption p {
+        font-size: 0.9rem;
+    }
+    
+    .btn-lg {
+        padding: 0.5rem 1rem;
+        font-size: 0.9rem;
+    }
+}
+
+.icon-wrapper {
+    height: 80px;
+    width: 80px;
+    line-height: 80px;
+    margin: 0 auto;
+    border-radius: 50%;
+    background-color: rgba(13, 110, 253, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* 特性卡片样式 */
+.feature-card {
+    background-color: white;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+}
+
+.feature-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.icon-circle {
+    height: 70px;
+    width: 70px;
+    line-height: 70px;
+    margin: 0 auto;
+    border-radius: 50%;
+    background-color: rgba(13, 110, 253, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8rem;
+}
+
+/* 客户案例样式 */
+.case-studies .card-img-top {
+    height: 180px;
+    object-fit: cover;
+}
+
+/* 客户评价样式 */
+.testimonial-item {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+}
+
+.avatar img {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border: 3px solid #0d6efd;
+}
+
+/* 价格计划样式 */
+.price-tag {
+    font-weight: 700;
+}
+
+/* 页脚样式 */
+.footer {
+    background-color: #212529;
+}
+
+.footer h5 {
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+.footer ul li {
+    margin-bottom: 10px;
+}
+
+.social-icons a {
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+}
+
+.social-icons a:hover {
+    color: #0d6efd !important;
+}
+
+/* 响应式调整 */
+@media (max-width: 992px) {
+    .carousel-item {
+        height: 400px;
+    }
+    
+    .carousel-caption h2 {
+        font-size: 1.8rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .carousel-item {
+        height: 350px;
+    }
+    
+    .carousel-caption {
+        bottom: 10%;
+    }
+    
+    .carousel-caption h2 {
+        font-size: 1.5rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .hero-section {
+        margin-top: 66px;
+    }
+}

@@ -1,0 +1,11 @@
+/**
+ * 管理后台专用样式
+ */
+
+/* 覆盖前台样式，修复评价管理页面显示问题 */
+.testimonial-admin-item {
+    min-height: unset;
+    max-height: unset;
+    display: block;
+    padding: 0 !important;
+}

@@ -1,0 +1,680 @@
+/* 热门标签样式修复 */
+.card-header.position-relative {
+    overflow: visible;
+}
+
+.card-header .badge {
+    z-index: 2;
+}
+
+/* 确保热门标签在不同屏幕尺寸下正确显示 */
+@media (max-width: 768px) {
+    .card-header .badge.translate-middle {
+        transform: translate(50%, -50%) !important;
+    }
+}
+
+/* 客户评价区样式优化 */
+.testimonials {
+    padding-bottom: 0 !important;
+}
+
+/* 限制轮播项高度，解决空白问题 */
+#testimonialCarousel .carousel-item {
+    height: auto;
+    max-height: 280px;
+    overflow: hidden;
+}
+
+#testimonialCarousel {
+    min-height: auto;
+    margin-bottom: 0;
+    padding-bottom: 30px;
+    position: relative;
+    max-height: 300px;
+}
+
+.testimonial-item {
+    min-height: auto;
+    max-height: 250px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem !important;
+}
+
+#testimonialCarousel .carousel-indicators {
+    bottom: 0;
+    margin-bottom: 0;
+}
+
+#testimonialCarousel .carousel-indicators button {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: #ccc;
+    margin: 0 4px;
+}
+
+#testimonialCarousel .carousel-indicators button.active {
+    background-color: #0d6efd;
+}
+
+.avatar img {
+    width: 60px;
+    height: 60px;
+}
+
+/* 修复页面间距问题 */
+.pricing-section {
+    padding-top: 2rem !important;
+    position: relative;
+    z-index: 1;
+    margin-top: 0;
+}
+
+.solutions-wrapper {
+    position: relative;
+    z-index: 2;
+}
+
+/* 解决评价区域和解决方案区域之间的空白 */
+.testimonials::after {
+    content: "";
+    display: block;
+    height: 0;
+    clear: both;
+}
+
+/* 在非手机屏幕上减少评价区的垂直内边距 */
+@media (min-width: 768px) {
+    .testimonials {
+        padding-top: 2rem !important;
+        padding-bottom: 0 !important;
+    }
+    
+    .pricing-section {
+        padding-top: 2rem !important;
+        margin-top: 0;
+    }
+    
+    #testimonialCarousel .carousel-item {
+        max-height: 280px;
+    }
+}
+
+/* 在手机屏幕上进一步减少评价区域的内边距 */
+@media (max-width: 767px) {
+    .testimonials {
+        padding-top: 2rem !important;
+        padding-bottom: 0 !important;
+    }
+    
+    .pricing-section {
+        padding-top: 1.5rem !important;
+        margin-top: 0;
+    }
+    
+    #testimonialCarousel {
+        min-height: auto;
+        max-height: 250px;
+    }
+    
+    #testimonialCarousel .carousel-item {
+        max-height: 230px;
+    }
+    
+    .testimonial-item {
+        min-height: auto;
+        max-height: 220px;
+        padding: 0.5rem !important;
+    }
+    
+    .avatar img {
+        width: 50px;
+        height: 50px;
+    }
+}
+
+/* 现代化发展历程时间轴样式 */
+.history-section {
+    position: relative;
+    overflow: hidden;
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+}
+
+.history-section::before {
+    content: '';
+    position: absolute;
+    width: 200%;
+    height: 200%;
+    top: -50%;
+    left: -50%;
+    z-index: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><circle cx="50" cy="50" r="1.5" fill="%23e0e0e0"/></svg>');
+    opacity: 0.3;
+}
+
+.timeline {
+    position: relative;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.timeline::after {
+    content: '';
+    position: absolute;
+    width: 6px;
+    background-color: #e9ecef;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    margin-left: -3px;
+    border-radius: 3px;
+    z-index: 1;
+}
+
+.timeline-item {
+    position: relative;
+    margin-bottom: 70px;
+    width: 100%;
+    perspective: 1000px;
+}
+
+.timeline-badge {
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    text-align: center;
+    color: white;
+    z-index: 2;
+    left: 50%;
+    margin-left: -40px;
+    top: 0;
+    box-shadow: 0 0 0 6px #fff, 0 0 0 12px rgba(13, 110, 253, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background: linear-gradient(145deg, #0d6efd, #0a58ca);
+    transition: all 0.3s ease;
+    animation: pulse 2s infinite;
+}
+
+.timeline-badge:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 0 6px #fff, 0 0 0 12px rgba(13, 110, 253, 0.2);
+    animation: none;
+}
+
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(13, 110, 253, 0.7);
+    }
+    70% {
+        box-shadow: 0 0 0 10px rgba(13, 110, 253, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(13, 110, 253, 0);
+    }
+}
+
+.timeline-badge span {
+    display: block;
+    line-height: 1.2;
+}
+
+.timeline-badge span:first-child {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 3px;
+}
+
+.timeline-content {
+    position: relative;
+    width: 45%;
+    background-color: white;
+    padding: 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    z-index: 1;
+    transform-style: preserve-3d;
+    transform: rotateY(0deg);
+    backface-visibility: hidden;
+}
+
+.timeline-item:nth-child(odd) .timeline-content {
+    float: left;
+    transform: perspective(1000px) rotateY(3deg);
+    transform-origin: right center;
+    animation: fadeInLeft 1s both;
+}
+
+.timeline-item:nth-child(even) .timeline-content {
+    float: right;
+    transform: perspective(1000px) rotateY(-3deg);
+    transform-origin: left center;
+    animation: fadeInRight 1s both;
+}
+
+.timeline-content:hover {
+    transform: perspective(1000px) rotateY(0deg) translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    z-index: 2;
+}
+
+@keyframes fadeInLeft {
+    from {
+        opacity: 0;
+        transform: perspective(1000px) rotateY(10deg) translateX(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: perspective(1000px) rotateY(3deg) translateX(0);
+    }
+}
+
+@keyframes fadeInRight {
+    from {
+        opacity: 0;
+        transform: perspective(1000px) rotateY(-10deg) translateX(50px);
+    }
+    to {
+        opacity: 1;
+        transform: perspective(1000px) rotateY(-3deg) translateX(0);
+    }
+}
+
+.timeline-content h4 {
+    color: #0d6efd;
+    margin-bottom: 10px;
+    font-weight: 600;
+    position: relative;
+    display: inline-block;
+}
+
+.timeline-content h4::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    background-color: rgba(13, 110, 253, 0.2);
+    bottom: -4px;
+    left: 0;
+}
+
+.timeline-content p {
+    margin-bottom: 0;
+    color: #555;
+    line-height: 1.7;
+}
+
+/* 添加箭头效果 */
+.timeline-content::after {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    top: 30px;
+    background-color: white;
+    transform: rotate(45deg);
+    box-shadow: 2px -2px 6px rgba(0, 0, 0, 0.05);
+    z-index: 0;
+}
+
+.timeline-item:nth-child(odd) .timeline-content::after {
+    right: -10px;
+}
+
+.timeline-item:nth-child(even) .timeline-content::after {
+    left: -10px;
+}
+
+/* 清除浮动 */
+.timeline-item::after {
+    content: '';
+    display: table;
+    clear: both;
+}
+
+/* 连接线效果 */
+.timeline-item::before {
+    content: '';
+    position: absolute;
+    height: 2px;
+    background-color: #e9ecef;
+    top: 40px;
+    width: calc(50% - 40px);
+    z-index: 1;
+}
+
+.timeline-item:nth-child(odd)::before {
+    right: 50%;
+}
+
+.timeline-item:nth-child(even)::before {
+    left: 50%;
+}
+
+/* 响应式设计 */
+@media (max-width: 767px) {
+    .timeline::after {
+        left: 40px;
+    }
+    
+    .timeline-badge {
+        left: 40px;
+        margin-left: 0;
+        width: 60px;
+        height: 60px;
+        line-height: 60px;
+        font-size: 1rem;
+    }
+    
+    .timeline-badge span:first-child {
+        font-size: 1.2rem;
+    }
+    
+    .timeline-content {
+        width: calc(100% - 90px);
+        float: right;
+        margin-left: 90px;
+        animation: fadeInRight 1s both !important;
+        transform: perspective(1000px) rotateY(0deg) !important;
+    }
+    
+    .timeline-item:nth-child(odd) .timeline-content::after,
+    .timeline-item:nth-child(even) .timeline-content::after {
+        left: -10px;
+    }
+    
+    .timeline-item {
+        margin-bottom: 40px;
+    }
+    
+    .timeline-item::before {
+        width: 40px;
+        left: 40px;
+    }
+    
+    .timeline-item:nth-child(odd)::before,
+    .timeline-item:nth-child(even)::before {
+        right: auto;
+        left: 40px;
+    }
+}
+
+/* 内容高亮效果 */
+.content-highlight {
+    border-left: 4px solid #0d6efd !important;
+    transform: perspective(1000px) rotateY(0deg) translateY(-8px) !important;
+    box-shadow: 0 12px 30px rgba(13, 110, 253, 0.2) !important;
+    transition: all 0.3s ease !important;
+}
+
+/* 更好的按钮悬停效果 */
+.btn-primary {
+    transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(13, 110, 253, 0.3);
+}
+
+@media (max-width: 767px) {
+    .content-highlight {
+        border-left-width: 4px;
+        transform: perspective(1000px) rotateY(0deg) translateY(-5px) !important;
+    }
+}
+
+/* 公告栏增强样式 */
+.announcement-marquee {
+    width: 100%;
+    height: 24px;
+    overflow: hidden;
+}
+
+.marquee-content {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.marquee-content span {
+    display: inline-block;
+    position: relative;
+    padding-right: 20px;
+    font-size: 14px;
+    line-height: 24px;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.announcement-content {
+    display: flex;
+    flex-wrap: nowrap;
+    width: 100%;
+    max-width: 100%;
+    overflow: hidden;
+}
+
+.announcement-text-wrapper {
+    flex: 1;
+    min-width: 0; /* 关键设置，防止flex子项超出容器 */
+    overflow: hidden;
+}
+
+/* 针对移动端的优化 */
+@media (max-width: 768px) {
+    .announcement-content {
+        padding: 8px 12px;
+        gap: 10px;
+    }
+    
+    .announcement-icon {
+        width: 30px;
+        height: 30px;
+        font-size: 0.9rem;
+        flex-shrink: 0;
+    }
+    
+    .announcement-actions {
+        flex-shrink: 0;
+    }
+    
+    .marquee-content span {
+        font-size: 13px;
+    }
+}
+
+/* 轮播控制按钮样式修复 */
+.carousel-control-prev,
+.carousel-control-next {
+    width: 10%;
+    opacity: 0.7;
+    z-index: 5;
+    inset-inline: 0 auto;
+    background: transparent !important;
+}
+
+.carousel-control-next {
+    inset-inline: auto 0;
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    position: relative;
+    width: 2rem;
+    height: 2rem;
+    background-size: 100%;
+}
+
+/* 移动端调整 */
+@media (max-width: 768px) {
+    .carousel-control-prev,
+    .carousel-control-next {
+        width: 15%;
+        background: transparent !important;
+    }
+    
+    .carousel-control-prev-icon,
+    .carousel-control-next-icon {
+        width: 1.5rem;
+        height: 1.5rem;
+    }
+}
+
+/* 轮播图基础样式 */
+.hero-section {
+    margin-bottom: 20px;
+    overflow: hidden;
+}
+
+#mainCarousel {
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.carousel-item {
+    background-color: #000;
+    transition: transform .6s ease-in-out;
+}
+
+@media (min-width: 992px) {
+    .carousel-item {
+        height: 500px;
+    }
+}
+
+.carousel-item img {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+}
+
+/* 轮播图响应式修复 */
+.carousel {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+}
+
+.carousel-inner {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+}
+
+@media (max-width: 991.98px) {
+    .carousel-inner {
+        aspect-ratio: 16/9;
+    }
+}
+
+.carousel-item {
+    position: relative;
+    display: none;
+    float: left;
+    width: 100%;
+    margin-right: -100%;
+    backface-visibility: hidden;
+    transition: transform .6s ease-in-out;
+}
+
+.carousel-item.active {
+    display: block;
+}
+
+/* 轮播图说明区域上移调整 */
+.carousel-caption {
+    position: absolute;
+    right: 0;
+    bottom: 10%;
+    left: 0;
+    z-index: 10;
+    padding: 15px;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0));
+}
+
+/* 确保轮播图在移动端也可见，并且高度统一 */
+@media (max-width: 767.98px) {
+    .carousel-inner {
+        aspect-ratio: 16/9;
+        height: auto !important;
+    }
+    
+    .carousel-item {
+        height: auto !important;
+        aspect-ratio: 16/9;
+    }
+    
+    .carousel-item img {
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+        object-position: center;
+    }
+    
+    .carousel-caption {
+        display: block !important;
+        bottom: 10%;
+        padding: 10px;
+        background: linear-gradient(to top, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0));
+    }
+    
+    .carousel-caption h2 {
+        font-size: 1.2rem;
+        margin-bottom: 5px;
+    }
+    
+    .carousel-caption p {
+        font-size: 0.8rem;
+        margin-bottom: 5px;
+    }
+    
+    .carousel-caption .btn {
+        font-size: 0.8rem;
+        padding: 0.25rem 0.5rem;
+        margin-top: 5px;
+    }
+}
+
+/* 小屏幕轮播图高度进一步调整，保持宽高比 */
+@media (max-width: 575.98px) {
+    .carousel-inner {
+        aspect-ratio: 4/3;
+    }
+    
+    .carousel-item {
+        aspect-ratio: 4/3;
+    }
+    
+    .carousel-caption {
+        bottom: 8%;
+    }
+}
+
+/* 增强移动端导航栏按钮可见度 - 优化版 */
+.navbar-toggler {
+    border: 1px solid rgba(255, 255, 255, 0.3) !important;
+    padding: 0.5rem;
+    background: rgba(255, 255, 255, 0.05);
+    transition: all 0.3s ease;
+}
+
+.navbar-toggler:focus {
+    box-shadow: 0 0 0 0.15rem rgba(255, 255, 255, 0.1);
+}
+
+.navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 0.7%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") !important;
+}
