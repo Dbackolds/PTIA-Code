@@ -10,7 +10,7 @@ header('Content-Type: application/json');
 // 允许跨域请求
 header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Methods: POST, OPTIONS');
-header('Access-Control-Allow-Headers: Content-Type');
+header('Access-Control-Allow-Headers: Content-Type, X-Language');
 
 // 如果是OPTIONS请求（预检请求），直接返回成功
 if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
@@ -29,6 +29,22 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 
 // 获取内容类型
 $type = isset($_GET['type']) ? $_GET['type'] : '';
+
+// 获取语言参数，默认为英文
+$lang = isset($_GET['lang']) ? $_GET['lang'] : 'en';
+
+// 检查语言头信息
+$headers = getallheaders();
+$langHeader = isset($headers['X-Language']) ? $headers['X-Language'] : '';
+
+// 验证是否为英文内容API请求
+if ($lang !== 'en' || ($langHeader && $langHeader !== 'en')) {
+    echo json_encode([
+        'success' => false,
+        'message' => '此API仅处理英文内容，非英文内容请使用对应API'
+    ]);
+    exit;
+}
 
 // 验证内容类型
 if (!$type) {

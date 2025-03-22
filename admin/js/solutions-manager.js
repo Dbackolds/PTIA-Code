@@ -31,6 +31,12 @@ function initSolutionsManager() {
         
         solutionsContainer.innerHTML = '';
         
+        // 确保plans数组存在
+        if (!solutionsData.plans || !Array.isArray(solutionsData.plans)) {
+            solutionsData.plans = [];
+            console.warn('解决方案数据格式不正确，已创建空数组');
+        }
+        
         solutionsData.plans.forEach((solution, index) => {
             const solutionItem = document.createElement('div');
             solutionItem.className = 'solution-item mb-4';
@@ -44,11 +50,11 @@ function initSolutionsManager() {
                         <div class="row g-3">
                             <div class="col-md-6">
                                 <label class="form-label">标题</label>
-                                <input type="text" class="form-control solution-title" value="${solution.title}">
+                                <input type="text" class="form-control solution-title" value="${solution.title || ''}">
                             </div>
                             <div class="col-md-6">
                                 <label class="form-label">副标题</label>
-                                <input type="text" class="form-control solution-subtitle" value="${solution.subtitle}">
+                                <input type="text" class="form-control solution-subtitle" value="${solution.subtitle || ''}">
                             </div>
                             <div class="col-md-12 mt-3">
                                 <div class="form-check">
@@ -58,14 +64,14 @@ function initSolutionsManager() {
                             </div>
                             <div class="col-md-12">
                                 <label class="form-label">链接</label>
-                                <input type="text" class="form-control solution-link" value="${solution.link}">
+                                <input type="text" class="form-control solution-link" value="${solution.link || ''}">
                             </div>
                             <div class="col-md-12">
                                 <label class="form-label">特性列表</label>
                                 <div class="solution-features-container">
-                                    ${solution.features.map((feature, featureIndex) => `
+                                    ${(solution.features || []).map((feature, featureIndex) => `
                                         <div class="input-group mb-2 solution-feature-item">
-                                            <input type="text" class="form-control solution-feature" value="${feature}">
+                                            <input type="text" class="form-control solution-feature" value="${feature || ''}">
                                             <button class="btn btn-outline-danger delete-feature-btn" data-solution="${index}" data-feature="${featureIndex}" type="button">
                                                 <i class="bi bi-dash"></i>
                                             </button>
@@ -94,14 +100,19 @@ function initSolutionsManager() {
                 button.addEventListener('click', function() {
                     const solutionIndex = parseInt(this.getAttribute('data-solution'));
                     const featureIndex = parseInt(this.getAttribute('data-feature'));
-                    solutionsData.plans[solutionIndex].features.splice(featureIndex, 1);
-                    renderSolutionItems();
+                    if (solutionsData.plans[solutionIndex] && solutionsData.plans[solutionIndex].features) {
+                        solutionsData.plans[solutionIndex].features.splice(featureIndex, 1);
+                        renderSolutionItems();
+                    }
                 });
             });
             
             // 添加新特性事件监听
             solutionItem.querySelector('.add-feature-btn').addEventListener('click', function() {
                 const index = parseInt(this.getAttribute('data-index'));
+                if (!solutionsData.plans[index].features) {
+                    solutionsData.plans[index].features = [];
+                }
                 solutionsData.plans[index].features.push('新特性');
                 renderSolutionItems();
             });
@@ -139,7 +150,10 @@ function initSolutionsManager() {
                 solutionItems.forEach(item => {
                     const features = [];
                     item.querySelectorAll('.solution-feature').forEach(input => {
-                        features.push(input.value);
+                        // 只添加非空的特性
+                        if (input.value.trim()) {
+                            features.push(input.value.trim());
+                        }
                     });
                     
                     plans.push({
@@ -154,7 +168,7 @@ function initSolutionsManager() {
                 // 更新数据
                 solutionsData.plans = plans;
                 
-                // 保存数据
+                // 保存数据 - 确保只保存中文版数据
                 const success = await saveSolutionsData(solutionsData);
                 
                 if (success) {

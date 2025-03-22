@@ -3,6 +3,9 @@
  * 管理面板 - 内容管理系统
  */
 
+// 设置时区为北京时间
+date_default_timezone_set('Asia/Shanghai');
+
 // 启动会话
 session_start();
 
@@ -18,6 +21,7 @@ $username = isset($_SESSION['admin_username']) ? $_SESSION['admin_username'] : '
 
 // 生成最近活动日志
 function generateRecentActivities() {
+    global $username;  // 获取全局变量中的用户名
     $activities = [];
     
     // 获取data目录下所有JSON文件的修改时间
@@ -34,7 +38,7 @@ function generateRecentActivities() {
             'type' => '更新',
             'module' => $prettyName,
             'time' => $modTime,
-            'user' => 'Admin'
+            'user' => $username  // 使用登录用户的用户名
         ];
     }
     
@@ -181,7 +185,7 @@ $companyHistoryCount = safeCount($companyHistory, 'milestones'); // 发展历程
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>内容管理 - 未来科技</title>
+    <title>内容管理 - 像素科技</title>
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/custom.css">
     <link rel="stylesheet" href="../css/bootstrap-icons/bootstrap-icons.css">
@@ -336,7 +340,7 @@ $companyHistoryCount = safeCount($companyHistory, 'milestones'); // 发展历程
 <body>
     <header class="navbar navbar-dark sticky-top bg-primary flex-md-nowrap p-0 shadow">
         <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="#">
-            <img src="../images/logo-white.png" alt="未来科技" width="120">
+            <img src="../images/logo-white.png" alt="像素科技" width="120">
         </a>
         <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu">
             <span class="navbar-toggler-icon"></span>
@@ -1320,43 +1324,46 @@ $companyHistoryCount = safeCount($companyHistory, 'milestones'); // 发展历程
                                     <!-- 标签页导航 -->
                                     <ul class="nav nav-tabs" id="englishContentTabs" role="tablist">
                                         <li class="nav-item" role="presentation">
-                                            <button class="nav-link active" id="banners-en-tab" data-bs-target="#banners-en-content" type="button" role="tab" aria-controls="banners-en-content" aria-selected="true">轮播图</button>
+                                            <button class="nav-link active" id="banners-en-tab" data-bs-target="#banners-en-content" type="button" role="tab" aria-controls="banners-en-content" aria-selected="true" onclick="return false;">轮播图</button>
                                         </li>
                                         <li class="nav-item" role="presentation">
-                                            <button class="nav-link" id="announcement-en-tab" data-bs-target="#announcement-en-content" type="button" role="tab" aria-controls="announcement-en-content" aria-selected="false">公告</button>
+                                            <button class="nav-link" id="announcement-en-tab" data-bs-target="#announcement-en-content" type="button" role="tab" aria-controls="announcement-en-content" aria-selected="false" onclick="return false;">公告</button>
                                         </li>
                                         <li class="nav-item" role="presentation">
-                                            <button class="nav-link" id="features-en-tab" data-bs-target="#features-en-content" type="button" role="tab" aria-controls="features-en-content" aria-selected="false">特性</button>
+                                            <button class="nav-link" id="features-en-tab" data-bs-target="#features-en-content" type="button" role="tab" aria-controls="features-en-content" aria-selected="false" onclick="return false;">特性</button>
                                         </li>
                                         <li class="nav-item" role="presentation">
-                                            <button class="nav-link" id="cases-en-tab" data-bs-target="#cases-en-content" type="button" role="tab" aria-controls="cases-en-content" aria-selected="false">案例</button>
+                                            <button class="nav-link" id="cases-en-tab" data-bs-target="#cases-en-content" type="button" role="tab" aria-controls="cases-en-content" aria-selected="false" onclick="return false;">案例</button>
                                         </li>
                                         <li class="nav-item" role="presentation">
-                                            <button class="nav-link" id="products-en-tab" data-bs-target="#products-en-content" type="button" role="tab" aria-controls="products-en-content" aria-selected="false">产品</button>
+                                            <button class="nav-link" id="partner-cases-en-tab" data-bs-target="#partner-cases-en-content" type="button" role="tab" aria-controls="partner-cases-en-content" aria-selected="false" onclick="return false;">合作案例</button>
                                         </li>
                                         <li class="nav-item" role="presentation">
-                                            <button class="nav-link" id="solutions-en-tab" data-bs-target="#solutions-en-content" type="button" role="tab" aria-controls="solutions-en-content" aria-selected="false">解决方案</button>
+                                            <button class="nav-link" id="products-en-tab" data-bs-target="#products-en-content" type="button" role="tab" aria-controls="products-en-content" aria-selected="false" onclick="return false;">产品</button>
                                         </li>
                                         <li class="nav-item" role="presentation">
-                                            <button class="nav-link" id="testimonials-en-tab" data-bs-target="#testimonials-en-content" type="button" role="tab" aria-controls="testimonials-en-content" aria-selected="false">评价管理</button>
+                                            <button class="nav-link" id="solutions-en-tab" data-bs-target="#solutions-en-content" type="button" role="tab" aria-controls="solutions-en-content" aria-selected="false" onclick="return false;">解决方案</button>
                                         </li>
                                         <li class="nav-item" role="presentation">
-                                            <button class="nav-link" id="team-en-tab" data-bs-target="#team-en-content" type="button" role="tab" aria-controls="team-en-content" aria-selected="false">团队成员</button>
+                                            <button class="nav-link" id="testimonials-en-tab" data-bs-target="#testimonials-en-content" type="button" role="tab" aria-controls="testimonials-en-content" aria-selected="false" onclick="return false;">评价管理</button>
                                         </li>
                                         <li class="nav-item" role="presentation">
-                                            <button class="nav-link" id="history-en-tab" data-bs-target="#history-en-content" type="button" role="tab" aria-controls="history-en-content" aria-selected="false">发展历程</button>
+                                            <button class="nav-link" id="team-en-tab" data-bs-target="#team-en-content" type="button" role="tab" aria-controls="team-en-content" aria-selected="false" onclick="return false;">团队成员</button>
                                         </li>
                                         <li class="nav-item" role="presentation">
-                                            <button class="nav-link" id="partners-en-tab" data-bs-target="#partners-en-content" type="button" role="tab" aria-controls="partners-en-content" aria-selected="false">合作伙伴</button>
+                                            <button class="nav-link" id="history-en-tab" data-bs-target="#history-en-content" type="button" role="tab" aria-controls="history-en-content" aria-selected="false" onclick="return false;">发展历程</button>
                                         </li>
                                         <li class="nav-item" role="presentation">
-                                            <button class="nav-link" id="footer-en-tab" data-bs-target="#footer-en-content" type="button" role="tab" aria-controls="footer-en-content" aria-selected="false">页脚</button>
+                                            <button class="nav-link" id="partners-en-tab" data-bs-target="#partners-en-content" type="button" role="tab" aria-controls="partners-en-content" aria-selected="false" onclick="return false;">合作伙伴</button>
                                         </li>
                                         <li class="nav-item" role="presentation">
-                                            <button class="nav-link" id="navigation-en-tab" data-bs-target="#navigation-en-content" type="button" role="tab" aria-controls="navigation-en-content" aria-selected="false">导航</button>
+                                            <button class="nav-link" id="footer-en-tab" data-bs-target="#footer-en-content" type="button" role="tab" aria-controls="footer-en-content" aria-selected="false" onclick="return false;">页脚</button>
                                         </li>
                                         <li class="nav-item" role="presentation">
-                                            <button class="nav-link" id="language-en-tab" data-bs-target="#language-en-content" type="button" role="tab" aria-controls="language-en-content" aria-selected="false">语言</button>
+                                            <button class="nav-link" id="navigation-en-tab" data-bs-target="#navigation-en-content" type="button" role="tab" aria-controls="navigation-en-content" aria-selected="false" onclick="return false;">导航</button>
+                                        </li>
+                                        <li class="nav-item" role="presentation">
+                                            <button class="nav-link" id="language-en-tab" data-bs-target="#language-en-content" type="button" role="tab" aria-controls="language-en-content" aria-selected="false" onclick="return false;">语言</button>
                                         </li>
                                     </ul>
                                     
@@ -1415,6 +1422,21 @@ $companyHistoryCount = safeCount($companyHistory, 'milestones'); // 发展历程
                                             </div>
                                             <div class="action-buttons">
                                                 <button id="save-cases-en" class="btn btn-primary">保存更改</button>
+                                            </div>
+                                        </div>
+                                        
+                                        <!-- 合作案例管理 -->
+                                        <div class="tab-pane fade" id="partner-cases-en-content" role="tabpanel" aria-labelledby="partner-cases-en-tab">
+                                            <div class="mb-3">
+                                                <div id="partner-cases-en-container">
+                                                    <!-- 合作案例项将通过JavaScript动态添加 -->
+                                                </div>
+                                                <button id="add-partner-case-en" class="btn btn-outline-primary mt-2">
+                                                    <i class="bi bi-plus"></i> 添加合作案例
+                                                </button>
+                                            </div>
+                                            <div class="action-buttons">
+                                                <button id="save-partner-cases-en" class="btn btn-primary">保存更改</button>
                                             </div>
                                         </div>
                                         
@@ -2057,6 +2079,174 @@ echo __('welcome_user', 'common', ['username' => $userName]);</code></pre>
     <script type="module" src="js/main.js"></script>
     <script type="module" src="js/english-content-manager.js"></script>
     <script src="js/english-content-fix.js"></script>
+    
+    <script>
+        // 确保页面加载完成后修复英文内容管理
+        document.addEventListener('DOMContentLoaded', function() {
+            // 等待所有资源加载完毕后执行修复
+            setTimeout(function() {
+                // 调用修复函数
+                if (typeof fixEnglishContentManager === 'function') {
+                    console.log('开始修复英文内容管理页面...');
+                    fixEnglishContentManager();
+                } else {
+                    console.error('修复函数未找到，请检查english-content-fix.js是否正确加载');
+                }
+                
+                // 手动绑定英文内容管理标签页点击事件
+                const tabs = document.querySelectorAll('#englishContentTabs .nav-link');
+                tabs.forEach(tab => {
+                    tab.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        
+                        const targetId = this.getAttribute('data-bs-target');
+                        const targetPane = document.querySelector(targetId);
+                        
+                        // 隐藏所有面板
+                        document.querySelectorAll('#englishContentTabsContent .tab-pane').forEach(pane => {
+                            pane.classList.remove('show', 'active');
+                        });
+                        
+                        // 取消所有标签激活状态
+                        tabs.forEach(t => {
+                            t.classList.remove('active');
+                        });
+                        
+                        // 激活当前标签和面板
+                        this.classList.add('active');
+                        if(targetPane) {
+                            targetPane.classList.add('show', 'active');
+                        }
+                        
+                        // 触发内容加载
+                        const tabId = this.id;
+                        console.log('切换到标签页: ' + tabId);
+                        
+                        switch(tabId) {
+                            case 'footer-en-tab':
+                                if(typeof renderEnFooter === 'function') renderEnFooter();
+                                break;
+                            case 'navigation-en-tab':
+                                if(typeof renderEnNavigation === 'function') renderEnNavigation();
+                                break;
+                            // 其他标签页可以根据需要添加
+                        }
+                        
+                        return false;
+                    }, true); // 使用捕获阶段
+                });
+                
+                // 检查当前是否在英文内容管理页面
+                const urlParams = new URLSearchParams(window.location.search);
+                const section = urlParams.get('section');
+                
+                if (section === 'english_content') {
+                    // 获取当前激活的标签页
+                    const activeTab = document.querySelector('#englishContentTabs .nav-link.active');
+                    if (activeTab) {
+                        const tabId = activeTab.id;
+                        console.log('当前激活的标签页ID:', tabId);
+                        
+                        // 根据不同标签加载相应数据
+                        switch(tabId) {
+                            case 'banners-en-tab':
+                                if(typeof renderEnBanners === 'function') renderEnBanners();
+                                break;
+                            case 'features-en-tab':
+                                if(typeof renderEnFeatures === 'function') renderEnFeatures();
+                                break;
+                            case 'cases-en-tab':
+                                if(typeof renderEnCases === 'function') renderEnCases();
+                                break;
+                            case 'partner-cases-en-tab':
+                                if(typeof renderEnPartnerCases === 'function') renderEnPartnerCases();
+                                break;
+                            case 'products-en-tab':
+                                if(typeof renderEnProducts === 'function') renderEnProducts();
+                                break;
+                            case 'solutions-en-tab':
+                                if(typeof renderEnSolutions === 'function') renderEnSolutions();
+                                break;
+                            case 'team-en-tab':
+                                if(typeof renderEnTeamMembers === 'function') renderEnTeamMembers();
+                                break;
+                            case 'history-en-tab':
+                                if(typeof renderEnCompanyHistory === 'function') renderEnCompanyHistory();
+                                break;
+                            case 'partners-en-tab':
+                                if(typeof renderEnPartners === 'function') renderEnPartners();
+                                break;
+                            case 'navigation-en-tab':
+                                if(typeof renderEnNavigation === 'function') renderEnNavigation();
+                                break;
+                            case 'footer-en-tab':
+                                if(typeof renderEnFooter === 'function') renderEnFooter();
+                                break;
+                            case 'language-en-tab':
+                                if(typeof renderEnLanguage === 'function') renderEnLanguage();
+                                break;
+                        }
+                    }
+                }
+                
+                // 添加监听器，检测菜单项点击
+                document.querySelectorAll('.nav-link[data-section="english_content"]').forEach(link => {
+                    link.addEventListener('click', function() {
+                        // 延迟执行，确保DOM已更新
+                        setTimeout(function() {
+                            // 检查当前激活的标签页
+                            const activeTab = document.querySelector('#englishContentTabs .nav-link.active');
+                            if (activeTab) {
+                                const tabId = activeTab.id;
+                                console.log('菜单点击后激活的标签页:', tabId);
+                                
+                                // 根据不同标签加载相应数据
+                                switch(tabId) {
+                                    case 'banners-en-tab':
+                                        if(typeof renderEnBanners === 'function') renderEnBanners();
+                                        break;
+                                    case 'features-en-tab':
+                                        if(typeof renderEnFeatures === 'function') renderEnFeatures();
+                                        break;
+                                    case 'cases-en-tab':
+                                        if(typeof renderEnCases === 'function') renderEnCases();
+                                        break;
+                                    case 'partner-cases-en-tab':
+                                        if(typeof renderEnPartnerCases === 'function') renderEnPartnerCases();
+                                        break;
+                                    case 'products-en-tab':
+                                        if(typeof renderEnProducts === 'function') renderEnProducts();
+                                        break;
+                                    case 'solutions-en-tab':
+                                        if(typeof renderEnSolutions === 'function') renderEnSolutions();
+                                        break;
+                                    case 'team-en-tab':
+                                        if(typeof renderEnTeamMembers === 'function') renderEnTeamMembers();
+                                        break;
+                                    case 'history-en-tab':
+                                        if(typeof renderEnCompanyHistory === 'function') renderEnCompanyHistory();
+                                        break;
+                                    case 'partners-en-tab':
+                                        if(typeof renderEnPartners === 'function') renderEnPartners();
+                                        break;
+                                    case 'navigation-en-tab':
+                                        if(typeof renderEnNavigation === 'function') renderEnNavigation();
+                                        break;
+                                    case 'footer-en-tab':
+                                        if(typeof renderEnFooter === 'function') renderEnFooter();
+                                        break;
+                                    case 'language-en-tab':
+                                        if(typeof renderEnLanguage === 'function') renderEnLanguage();
+                                        break;
+                                }
+                            }
+                        }, 500);
+                    });
+                });
+            }, 1000); // 延迟1秒，确保所有资源都加载完毕
+        });
+    </script>
 
     <!-- 里程碑模板 -->
     <template id="milestone-template">

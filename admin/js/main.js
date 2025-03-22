@@ -28,6 +28,12 @@ function ensureGlobalVariables() {
         console.warn('公告数据不存在，已创建空对象');
     }
     
+    // 英文公告数据
+    if (typeof announcementDataEn === 'undefined' || announcementDataEn === null) {
+        window.announcementDataEn = { text: '' };
+        console.warn('英文公告数据不存在，已创建空对象');
+    }
+    
     // 云产品数据
     if (typeof cloudProductsData === 'undefined' || cloudProductsData === null) {
         window.cloudProductsData = { title: '云产品', products: [] };
@@ -35,6 +41,15 @@ function ensureGlobalVariables() {
     } else if (!cloudProductsData.products) {
         cloudProductsData.products = [];
         console.warn('云产品数据缺少products数组，已创建');
+    }
+    
+    // 英文云产品数据
+    if (typeof cloudProductsDataEn === 'undefined' || cloudProductsDataEn === null) {
+        window.cloudProductsDataEn = { title: 'Cloud Products', products: [] };
+        console.warn('英文云产品数据不存在，已创建空对象');
+    } else if (!cloudProductsDataEn.products) {
+        cloudProductsDataEn.products = [];
+        console.warn('英文云产品数据缺少products数组，已创建');
     }
     
     // 特性数据
@@ -46,6 +61,15 @@ function ensureGlobalVariables() {
         console.warn('特性数据缺少features数组，已创建');
     }
     
+    // 英文特性数据
+    if (typeof featuresDataEn === 'undefined' || featuresDataEn === null) {
+        window.featuresDataEn = { title: 'Features', features: [] };
+        console.warn('英文特性数据不存在，已创建空对象');
+    } else if (!featuresDataEn.features) {
+        featuresDataEn.features = [];
+        console.warn('英文特性数据缺少features数组，已创建');
+    }
+    
     // 案例研究数据
     if (typeof caseStudiesData === 'undefined' || caseStudiesData === null) {
         window.caseStudiesData = { title: '案例研究', cases: [] };
@@ -53,6 +77,15 @@ function ensureGlobalVariables() {
     } else if (!caseStudiesData.cases) {
         caseStudiesData.cases = [];
         console.warn('案例研究数据缺少cases数组，已创建');
+    }
+    
+    // 英文案例研究数据
+    if (typeof caseStudiesDataEn === 'undefined' || caseStudiesDataEn === null) {
+        window.caseStudiesDataEn = { title: 'Case Studies', cases: [] };
+        console.warn('英文案例研究数据不存在，已创建空对象');
+    } else if (!caseStudiesDataEn.cases) {
+        caseStudiesDataEn.cases = [];
+        console.warn('英文案例研究数据缺少cases数组，已创建');
     }
     
     // 评价数据
@@ -64,6 +97,15 @@ function ensureGlobalVariables() {
         console.warn('评价数据缺少testimonials数组，已创建');
     }
     
+    // 英文评价数据
+    if (typeof testimonialsDataEn === 'undefined' || testimonialsDataEn === null) {
+        window.testimonialsDataEn = { title: 'Testimonials', testimonials: [] };
+        console.warn('英文评价数据不存在，已创建空对象');
+    } else if (!testimonialsDataEn.testimonials) {
+        testimonialsDataEn.testimonials = [];
+        console.warn('英文评价数据缺少testimonials数组，已创建');
+    }
+    
     // 解决方案数据
     if (typeof solutionsData === 'undefined' || solutionsData === null) {
         window.solutionsData = { title: '解决方案', plans: [] };
@@ -73,6 +115,15 @@ function ensureGlobalVariables() {
         console.warn('解决方案数据缺少plans数组，已创建');
     }
     
+    // 英文解决方案数据
+    if (typeof solutionsDataEn === 'undefined' || solutionsDataEn === null) {
+        window.solutionsDataEn = { title: 'Solutions', plans: [] };
+        console.warn('英文解决方案数据不存在，已创建空对象');
+    } else if (!solutionsDataEn.plans) {
+        solutionsDataEn.plans = [];
+        console.warn('英文解决方案数据缺少plans数组，已创建');
+    }
+    
     // 轮播图数据
     if (typeof bannersData === 'undefined' || bannersData === null) {
         window.bannersData = { banners: [] };
@@ -80,6 +131,15 @@ function ensureGlobalVariables() {
     } else if (!bannersData.banners) {
         bannersData.banners = [];
         console.warn('轮播图数据缺少banners数组，已创建');
+    }
+    
+    // 英文轮播图数据
+    if (typeof bannersDataEn === 'undefined' || bannersDataEn === null) {
+        window.bannersDataEn = { banners: [] };
+        console.warn('英文轮播图数据不存在，已创建空对象');
+    } else if (!bannersDataEn.banners) {
+        bannersDataEn.banners = [];
+        console.warn('英文轮播图数据缺少banners数组，已创建');
     }
     
     // 页脚数据
@@ -98,6 +158,22 @@ function ensureGlobalVariables() {
         if (!footerData.company_info) footerData.company_info = {};
     }
     
+    // 英文页脚数据
+    if (typeof footerDataEn === 'undefined' || footerDataEn === null) {
+        window.footerDataEn = { 
+            company_info: {},
+            social_links: [],
+            quick_links: [],
+            solution_links: []
+        };
+        console.warn('英文页脚数据不存在，已创建空对象');
+    } else {
+        if (!footerDataEn.social_links) footerDataEn.social_links = [];
+        if (!footerDataEn.quick_links) footerDataEn.quick_links = [];
+        if (!footerDataEn.solution_links) footerDataEn.solution_links = [];
+        if (!footerDataEn.company_info) footerDataEn.company_info = {};
+    }
+    
     // 导航数据
     if (typeof navigationData === 'undefined' || navigationData === null) {
         window.navigationData = { 
@@ -108,6 +184,18 @@ function ensureGlobalVariables() {
     } else {
         if (!navigationData.main_nav) navigationData.main_nav = [];
         if (!navigationData.login_buttons) navigationData.login_buttons = [];
+    }
+    
+    // 英文导航数据
+    if (typeof navigationDataEn === 'undefined' || navigationDataEn === null) {
+        window.navigationDataEn = { 
+            main_nav: [],
+            login_buttons: []
+        };
+        console.warn('英文导航数据不存在，已创建空对象');
+    } else {
+        if (!navigationDataEn.main_nav) navigationDataEn.main_nav = [];
+        if (!navigationDataEn.login_buttons) navigationDataEn.login_buttons = [];
     }
     
     // 战略合作伙伴数据
@@ -122,6 +210,18 @@ function ensureGlobalVariables() {
         console.warn('战略合作伙伴数据缺少partners数组，已创建');
     }
     
+    // 英文战略合作伙伴数据
+    if (typeof strategicPartnersDataEn === 'undefined' || strategicPartnersDataEn === null) {
+        window.strategicPartnersDataEn = { 
+            title: 'Strategic Partners',
+            partners: []
+        };
+        console.warn('英文战略合作伙伴数据不存在，已创建空对象');
+    } else if (!strategicPartnersDataEn.partners) {
+        strategicPartnersDataEn.partners = [];
+        console.warn('英文战略合作伙伴数据缺少partners数组，已创建');
+    }
+    
     // 技术合作伙伴数据
     if (typeof techPartnersData === 'undefined' || techPartnersData === null) {
         window.techPartnersData = { 
@@ -132,6 +232,18 @@ function ensureGlobalVariables() {
     } else if (!techPartnersData.partners) {
         techPartnersData.partners = [];
         console.warn('技术合作伙伴数据缺少partners数组，已创建');
+    }
+    
+    // 英文技术合作伙伴数据
+    if (typeof techPartnersDataEn === 'undefined' || techPartnersDataEn === null) {
+        window.techPartnersDataEn = { 
+            title: 'Technical Partners',
+            partners: []
+        };
+        console.warn('英文技术合作伙伴数据不存在，已创建空对象');
+    } else if (!techPartnersDataEn.partners) {
+        techPartnersDataEn.partners = [];
+        console.warn('英文技术合作伙伴数据缺少partners数组，已创建');
     }
     
     // 团队成员数据
@@ -147,6 +259,19 @@ function ensureGlobalVariables() {
         console.warn('团队成员数据缺少members数组，已创建');
     }
     
+    // 英文团队成员数据
+    if (typeof teamMembersDataEn === 'undefined' || teamMembersDataEn === null) {
+        window.teamMembersDataEn = { 
+            title: 'Core Team',
+            description: 'Our team consists of industry experts with rich technical and management experience',
+            members: []
+        };
+        console.warn('英文团队成员数据不存在，已创建空对象');
+    } else if (!teamMembersDataEn.members) {
+        teamMembersDataEn.members = [];
+        console.warn('英文团队成员数据缺少members数组，已创建');
+    }
+    
     // 公司发展历程数据
     if (typeof companyHistoryData === 'undefined' || companyHistoryData === null) {
         window.companyHistoryData = { 
@@ -160,6 +285,19 @@ function ensureGlobalVariables() {
         console.warn('发展历程数据缺少milestones数组，已创建');
     }
     
+    // 英文公司发展历程数据
+    if (typeof companyHistoryDataEn === 'undefined' || companyHistoryDataEn === null) {
+        window.companyHistoryDataEn = { 
+            title: 'Company History',
+            description: 'Our growth journey in the field of digital solutions',
+            milestones: []
+        };
+        console.warn('英文发展历程数据不存在，已创建空对象');
+    } else if (!companyHistoryDataEn.milestones) {
+        companyHistoryDataEn.milestones = [];
+        console.warn('英文发展历程数据缺少milestones数组，已创建');
+    }
+    
     return true;
 }
 
@@ -171,18 +309,31 @@ function initAllManagers() {
     console.log('初始化管理模块...');
     console.log('已加载数据：', {
         announcement: announcementData,
+        announcementEn: announcementDataEn,
         cloudProducts: cloudProductsData,
+        cloudProductsEn: cloudProductsDataEn,
         features: featuresData,
+        featuresEn: featuresDataEn,
         caseStudies: caseStudiesData,
+        caseStudiesEn: caseStudiesDataEn,
         testimonials: testimonialsData,
+        testimonialsEn: testimonialsDataEn,
         solutions: solutionsData,
+        solutionsEn: solutionsDataEn,
         banners: bannersData,
+        bannersEn: bannersDataEn,
         footer: footerData,
+        footerEn: footerDataEn,
         navigation: navigationData,
+        navigationEn: navigationDataEn,
         strategicPartners: strategicPartnersData,
+        strategicPartnersEn: strategicPartnersDataEn,
         techPartners: techPartnersData,
+        techPartnersEn: techPartnersDataEn,
         teamMembers: teamMembersData,
-        companyHistory: companyHistoryData
+        teamMembersEn: teamMembersDataEn,
+        companyHistory: companyHistoryData,
+        companyHistoryEn: companyHistoryDataEn
     });
     
     // 初始化导航切换

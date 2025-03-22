@@ -47,6 +47,9 @@ const englishContentManager = {
             // 如果DOM已加载完成，直接初始化
             this.initComponents();
         }
+        
+        // 调试：输出当前轮播图数据
+        console.log('当前英文轮播图数据:', window.bannersEnData);
     },
     
     // 初始化各组件
@@ -106,6 +109,14 @@ const englishContentManager = {
                 targetPane.classList.add('show', 'active');
                 this.classList.add('active');
                 
+                // 根据当前标签页动态加载内容
+                if (targetId === '#banners-content') {
+                    englishContentManager.renderBanners();
+                } else if (targetId === '#testimonials-content') {
+                    englishContentManager.renderTestimonials();
+                }
+                // 可以添加其他标签页的内容加载
+                
                 // 防止默认行为和事件冒泡
                 e.preventDefault();
                 e.stopPropagation();
@@ -126,6 +137,13 @@ const englishContentManager = {
             const firstPane = document.querySelector(firstTargetId);
             if (firstPane) {
                 firstPane.classList.add('show', 'active');
+                
+                // 加载第一个标签页内容
+                if (firstTargetId === '#banners-content') {
+                    englishContentManager.renderBanners();
+                } else if (firstTargetId === '#testimonials-content') {
+                    englishContentManager.renderTestimonials();
+                }
             }
         }
     },
@@ -185,9 +203,9 @@ const englishContentManager = {
     initBannersManager: function() {
         console.log('初始化英文轮播图管理');
         
-        const bannersContainer = document.getElementById('banners-en-container'); // 修正为正确的ID
-        const addBannerButton = document.getElementById('add-banner-en'); // 修正为正确的ID
-        const saveBannersButton = document.getElementById('save-banners-en'); // 修正为正确的ID
+        const bannersContainer = document.getElementById('banners-en-container'); 
+        const addBannerButton = document.getElementById('add-banner-en'); 
+        const saveBannersButton = document.getElementById('save-banners-en'); 
         
         if (bannersContainer && addBannerButton && saveBannersButton) {
             // 渲染轮播图数据
@@ -222,15 +240,34 @@ const englishContentManager = {
             // 保存轮播图按钮点击事件
             saveBannersButton.addEventListener('click', async function() {
                 try {
-                    // 确保数据格式正确
-                    const formattedData = window.bannersEnData || { banners: [] };
+                    // 收集当前表单中的数据
+                    const bannerItems = document.querySelectorAll('#banners-en-container .banner-item');
+                    const updatedBanners = [];
                     
+                    bannerItems.forEach(item => {
+                        const id = item.getAttribute('data-id');
+                        updatedBanners.push({
+                            id: id,
+                            title: item.querySelector('.banner-title').value,
+                            description: item.querySelector('.banner-description').value,
+                            image: item.querySelector('.banner-image').value,
+                            button1_text: item.querySelector('.banner-button1-text').value,
+                            button1_link: item.querySelector('.banner-button1-link').value,
+                            button2_text: item.querySelector('.banner-button2-text').value,
+                            button2_link: item.querySelector('.banner-button2-link').value
+                        });
+                    });
+                    
+                    // 更新全局数据
+                    window.bannersEnData = { banners: updatedBanners };
+                    
+                    // 发送到服务器
                     const response = await fetch('api/english_content.php?type=banners', {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json'
                         },
-                        body: JSON.stringify(formattedData)
+                        body: JSON.stringify(window.bannersEnData)
                     });
                     
                     if (!response.ok) {
@@ -255,7 +292,7 @@ const englishContentManager = {
 
     // 渲染轮播图
     renderBanners: function() {
-        const bannersContainer = document.getElementById('banners-container'); // 修正ID
+        const bannersContainer = document.getElementById('banners-en-container'); 
         if (!bannersContainer) {
             console.error('未找到轮播图容器元素');
             return;
@@ -336,17 +373,20 @@ const englishContentManager = {
 
     // 绑定轮播图数据更新事件
     bindBannerEvents: function() {
-        const titleInputs = document.querySelectorAll('.banner-title');
-        const subtitleInputs = document.querySelectorAll('.banner-subtitle');
-        const imageInputs = document.querySelectorAll('.banner-image');
-        const buttonTextInputs = document.querySelectorAll('.banner-button-text');
-        const buttonUrlInputs = document.querySelectorAll('.banner-button-url');
+        const titleInputs = document.querySelectorAll('#banners-en-container .banner-title');
+        const descriptionInputs = document.querySelectorAll('#banners-en-container .banner-description');
+        const imageInputs = document.querySelectorAll('#banners-en-container .banner-image');
+        const button1TextInputs = document.querySelectorAll('#banners-en-container .banner-button1-text');
+        const button1LinkInputs = document.querySelectorAll('#banners-en-container .banner-button1-link');
+        const button2TextInputs = document.querySelectorAll('#banners-en-container .banner-button2-text');
+        const button2LinkInputs = document.querySelectorAll('#banners-en-container .banner-button2-link');
         
         const updateBannerData = (id, field, value) => {
-            if (Array.isArray(window.bannersEnData)) {
-                const index = window.bannersEnData.findIndex(banner => (banner.id || '').toString() === id.toString());
+            if (window.bannersEnData && Array.isArray(window.bannersEnData.banners)) {
+                const index = window.bannersEnData.banners.findIndex(banner => 
+                    (banner.id || '').toString() === id.toString());
                 if (index !== -1) {
-                    window.bannersEnData[index][field] = value;
+                    window.bannersEnData.banners[index][field] = value;
                 }
             }
         };
@@ -357,9 +397,9 @@ const englishContentManager = {
             });
         });
         
-        subtitleInputs.forEach(input => {
+        descriptionInputs.forEach(input => {
             input.addEventListener('input', function() {
-                updateBannerData(this.getAttribute('data-id'), 'subtitle', this.value);
+                updateBannerData(this.getAttribute('data-id'), 'description', this.value);
             });
         });
         
@@ -369,31 +409,45 @@ const englishContentManager = {
             });
         });
         
-        buttonTextInputs.forEach(input => {
+        button1TextInputs.forEach(input => {
             input.addEventListener('input', function() {
-                updateBannerData(this.getAttribute('data-id'), 'button_text', this.value);
+                updateBannerData(this.getAttribute('data-id'), 'button1_text', this.value);
             });
         });
         
-        buttonUrlInputs.forEach(input => {
+        button1LinkInputs.forEach(input => {
             input.addEventListener('input', function() {
-                updateBannerData(this.getAttribute('data-id'), 'button_url', this.value);
+                updateBannerData(this.getAttribute('data-id'), 'button1_link', this.value);
+            });
+        });
+        
+        button2TextInputs.forEach(input => {
+            input.addEventListener('input', function() {
+                updateBannerData(this.getAttribute('data-id'), 'button2_text', this.value);
+            });
+        });
+        
+        button2LinkInputs.forEach(input => {
+            input.addEventListener('input', function() {
+                updateBannerData(this.getAttribute('data-id'), 'button2_link', this.value);
             });
         });
     },
 
     // 绑定删除轮播图事件
     bindDeleteBannerEvents: function() {
-        const deleteButtons = document.querySelectorAll('.delete-banner');
+        const deleteButtons = document.querySelectorAll('#banners-en-container .delete-banner');
         
         deleteButtons.forEach(button => {
             button.addEventListener('click', function() {
                 const id = this.getAttribute('data-id');
                 
-                if (Array.isArray(window.bannersEnData)) {
-                    const index = window.bannersEnData.findIndex(banner => (banner.id || '').toString() === id.toString());
+                if (window.bannersEnData && Array.isArray(window.bannersEnData.banners)) {
+                    const index = window.bannersEnData.banners.findIndex(banner => 
+                        (banner.id || '').toString() === id.toString());
+                    
                     if (index !== -1) {
-                        window.bannersEnData.splice(index, 1);
+                        window.bannersEnData.banners.splice(index, 1);
                         englishContentManager.renderBanners();
                     }
                 }
@@ -671,6 +725,9 @@ function loadTabContent(tabId) {
         case '#cases-content':
             renderCases();
             break;
+        case '#partner-cases-content':
+            renderPartnerCases();
+            break;
         case '#products-content':
             renderProducts();
             break;
@@ -687,10 +744,10 @@ function loadTabContent(tabId) {
             renderPartners();
             break;
         case '#footer-content':
-            renderFooter();
+            renderFooterContent();
             break;
         case '#navigation-content':
-            renderNavigation();
+            renderNavigationContent();
             break;
         default:
             console.warn(`未知的标签页ID: ${tabId}`);
@@ -772,9 +829,7 @@ function bindAddEvents() {
 /**
  * 渲染轮播图内容
  */
-/**
- * 渲染轮播图内容
- */
+/*
 function renderBanners() {
     const container = document.getElementById('banners-container');
     if (!container) return;
@@ -853,10 +908,12 @@ function renderBanners() {
         });
     });
 }
+*/
 
 /**
  * 添加新轮播图
  */
+/*
 function addBanner() {
     bannersData.banners.push({
         image: 'images/banner1.jpg',
@@ -869,10 +926,12 @@ function addBanner() {
     });
     renderBanners();
 }
+*/
 
 /**
  * 保存轮播图数据
  */
+/*
 async function saveBanners() {
     // 更新数据
     const bannerItems = document.querySelectorAll('.banner-item');
@@ -910,37 +969,7 @@ async function saveBanners() {
         showAlert('danger', '保存失败，请重试！');
     }
 }
-
-/**
- * 保存公告数据
- */
-async function saveAnnouncement() {
-    // 更新数据
-    const announcementText = document.getElementById('announcement-text');
-    announcementData.text = announcementText.value;
-    
-    // 发送到服务器
-    try {
-        const response = await fetch('api/english_content.php?type=announcement', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(announcementData)
-        });
-        
-        const result = await response.json();
-        
-        if (result.success) {
-            showAlert('success', '公告数据保存成功！');
-        } else {
-            showAlert('danger', result.message || '保存失败');
-        }
-    } catch (error) {
-        console.error('保存公告数据失败:', error);
-        showAlert('danger', '保存失败，请重试！');
-    }
-}
+*/
 
 /**
  * 添加新特性
@@ -1331,6 +1360,1104 @@ function renderFeatures() {
             renderFeatures();
         });
     });
+}
+
+/**
+ * 渲染页脚内容
+ */
+function renderFooterContent() {
+    const footerContainer = document.getElementById('footer-en-container');
+    if (!footerContainer) {
+        console.error('未找到页脚容器元素');
+        return;
+    }
+    
+    // 确保window.footerEnData有正确的结构
+    if (!window.footerEnData) {
+        console.warn('页脚数据为null，初始化为空对象');
+        window.footerEnData = {
+            company_info: '',
+            social_links: [],
+            quick_links: [],
+            solution_links: [],
+            contact_info: {
+                address: '',
+                phone: '',
+                email: '',
+                hours: ''
+            },
+            copyright: '',
+            icp: ''
+        };
+    }
+    
+    // 构建页脚编辑界面
+    footerContainer.innerHTML = `
+        <div class="card mt-3">
+            <div class="card-body">
+                <div class="mb-3">
+                    <label for="footer-company-info" class="form-label">公司简介</label>
+                    <textarea class="form-control" id="footer-company-info" rows="3">${window.footerEnData.company_info || ''}</textarea>
+                </div>
+                
+                <div class="mb-4">
+                    <h5>社交媒体链接</h5>
+                    <div id="footer-social-links-container">
+                        ${renderSocialLinks()}
+                    </div>
+                    <button id="add-social-link" class="btn btn-outline-primary btn-sm mt-2">
+                        <i class="bi bi-plus"></i> 添加社交链接
+                    </button>
+                </div>
+                
+                <div class="mb-4">
+                    <h5>快速链接</h5>
+                    <div id="footer-quick-links-container">
+                        ${renderQuickLinks()}
+                    </div>
+                    <button id="add-quick-link" class="btn btn-outline-primary btn-sm mt-2">
+                        <i class="bi bi-plus"></i> 添加快速链接
+                    </button>
+                </div>
+                
+                <div class="mb-4">
+                    <h5>解决方案链接</h5>
+                    <div id="footer-solution-links-container">
+                        ${renderSolutionLinks()}
+                    </div>
+                    <button id="add-solution-link" class="btn btn-outline-primary btn-sm mt-2">
+                        <i class="bi bi-plus"></i> 添加解决方案链接
+                    </button>
+                </div>
+                
+                <div class="mb-4">
+                    <h5>联系信息</h5>
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <label for="footer-address" class="form-label">地址</label>
+                            <input type="text" class="form-control" id="footer-address" value="${window.footerEnData.contact_info?.address || ''}">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="footer-phone" class="form-label">电话</label>
+                            <input type="text" class="form-control" id="footer-phone" value="${window.footerEnData.contact_info?.phone || ''}">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="footer-email" class="form-label">邮箱</label>
+                            <input type="text" class="form-control" id="footer-email" value="${window.footerEnData.contact_info?.email || ''}">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="footer-hours" class="form-label">工作时间</label>
+                            <input type="text" class="form-control" id="footer-hours" value="${window.footerEnData.contact_info?.hours || ''}">
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="mb-4">
+                    <h5>版权信息</h5>
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <label for="footer-copyright" class="form-label">版权文本</label>
+                            <input type="text" class="form-control" id="footer-copyright" value="${window.footerEnData.copyright || ''}">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="footer-icp" class="form-label">ICP备案号</label>
+                            <input type="text" class="form-control" id="footer-icp" value="${window.footerEnData.icp || ''}">
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="mt-3">
+                    <button id="save-footer" class="btn btn-primary">保存页脚设置</button>
+                </div>
+            </div>
+        </div>
+    `;
+    
+    // 绑定添加链接按钮事件
+    bindFooterEvents();
+}
+
+/**
+ * 渲染社交链接列表
+ */
+function renderSocialLinks() {
+    let html = '';
+    
+    if (Array.isArray(window.footerEnData.social_links) && window.footerEnData.social_links.length > 0) {
+        window.footerEnData.social_links.forEach((link, index) => {
+            html += `
+                <div class="input-group mb-2 social-link-item">
+                    <input type="text" class="form-control" placeholder="图标类名" value="${link.icon || ''}" data-field="icon" data-index="${index}">
+                    <input type="text" class="form-control" placeholder="链接URL" value="${link.link || ''}" data-field="link" data-index="${index}">
+                    <button class="btn btn-outline-danger delete-social-link" type="button" data-index="${index}">
+                        <i class="bi bi-trash"></i>
+                    </button>
+                </div>
+            `;
+        });
+    } else {
+        html = '<div class="alert alert-info">暂无社交链接，请添加。</div>';
+    }
+    
+    return html;
+}
+
+/**
+ * 渲染快速链接列表
+ */
+function renderQuickLinks() {
+    let html = '';
+    
+    if (Array.isArray(window.footerEnData.quick_links) && window.footerEnData.quick_links.length > 0) {
+        window.footerEnData.quick_links.forEach((link, index) => {
+            html += `
+                <div class="input-group mb-2 quick-link-item">
+                    <input type="text" class="form-control" placeholder="链接文本" value="${link.text || ''}" data-field="text" data-index="${index}">
+                    <input type="text" class="form-control" placeholder="链接URL" value="${link.link || ''}" data-field="link" data-index="${index}">
+                    <button class="btn btn-outline-danger delete-quick-link" type="button" data-index="${index}">
+                        <i class="bi bi-trash"></i>
+                    </button>
+                </div>
+            `;
+        });
+    } else {
+        html = '<div class="alert alert-info">暂无快速链接，请添加。</div>';
+    }
+    
+    return html;
+}
+
+/**
+ * 渲染解决方案链接列表
+ */
+function renderSolutionLinks() {
+    let html = '';
+    
+    if (Array.isArray(window.footerEnData.solution_links) && window.footerEnData.solution_links.length > 0) {
+        window.footerEnData.solution_links.forEach((link, index) => {
+            html += `
+                <div class="input-group mb-2 solution-link-item">
+                    <input type="text" class="form-control" placeholder="链接文本" value="${link.text || ''}" data-field="text" data-index="${index}">
+                    <input type="text" class="form-control" placeholder="链接URL" value="${link.link || ''}" data-field="link" data-index="${index}">
+                    <button class="btn btn-outline-danger delete-solution-link" type="button" data-index="${index}">
+                        <i class="bi bi-trash"></i>
+                    </button>
+                </div>
+            `;
+        });
+    } else {
+        html = '<div class="alert alert-info">暂无解决方案链接，请添加。</div>';
+    }
+    
+    return html;
+}
+
+/**
+ * 绑定页脚相关事件
+ */
+function bindFooterEvents() {
+    // 社交链接输入事件
+    const socialLinkContainer = document.getElementById('footer-social-links-container');
+    if (socialLinkContainer) {
+        socialLinkContainer.addEventListener('input', function(e) {
+            const target = e.target;
+            if (target.hasAttribute('data-field') && target.hasAttribute('data-index')) {
+                const field = target.getAttribute('data-field');
+                const index = parseInt(target.getAttribute('data-index'));
+                
+                if (window.footerEnData.social_links && index >= 0 && index < window.footerEnData.social_links.length) {
+                    window.footerEnData.social_links[index][field] = target.value;
+                }
+            }
+        });
+    }
+    
+    // 快速链接输入事件
+    const quickLinkContainer = document.getElementById('footer-quick-links-container');
+    if (quickLinkContainer) {
+        quickLinkContainer.addEventListener('input', function(e) {
+            const target = e.target;
+            if (target.hasAttribute('data-field') && target.hasAttribute('data-index')) {
+                const field = target.getAttribute('data-field');
+                const index = parseInt(target.getAttribute('data-index'));
+                
+                if (window.footerEnData.quick_links && index >= 0 && index < window.footerEnData.quick_links.length) {
+                    window.footerEnData.quick_links[index][field] = target.value;
+                }
+            }
+        });
+    }
+    
+    // 解决方案链接输入事件
+    const solutionLinkContainer = document.getElementById('footer-solution-links-container');
+    if (solutionLinkContainer) {
+        solutionLinkContainer.addEventListener('input', function(e) {
+            const target = e.target;
+            if (target.hasAttribute('data-field') && target.hasAttribute('data-index')) {
+                const field = target.getAttribute('data-field');
+                const index = parseInt(target.getAttribute('data-index'));
+                
+                if (window.footerEnData.solution_links && index >= 0 && index < window.footerEnData.solution_links.length) {
+                    window.footerEnData.solution_links[index][field] = target.value;
+                }
+            }
+        });
+    }
+    
+    // 添加社交链接按钮
+    const addSocialLinkBtn = document.getElementById('add-social-link');
+    if (addSocialLinkBtn) {
+        addSocialLinkBtn.addEventListener('click', function() {
+            if (!window.footerEnData.social_links) {
+                window.footerEnData.social_links = [];
+            }
+            
+            window.footerEnData.social_links.push({
+                icon: 'bi bi-facebook',
+                link: '#'
+            });
+            
+            document.getElementById('footer-social-links-container').innerHTML = renderSocialLinks();
+            bindFooterDeleteEvents();
+        });
+    }
+    
+    // 添加快速链接按钮
+    const addQuickLinkBtn = document.getElementById('add-quick-link');
+    if (addQuickLinkBtn) {
+        addQuickLinkBtn.addEventListener('click', function() {
+            if (!window.footerEnData.quick_links) {
+                window.footerEnData.quick_links = [];
+            }
+            
+            window.footerEnData.quick_links.push({
+                text: 'New Link',
+                link: '#'
+            });
+            
+            document.getElementById('footer-quick-links-container').innerHTML = renderQuickLinks();
+            bindFooterDeleteEvents();
+        });
+    }
+    
+    // 添加解决方案链接按钮
+    const addSolutionLinkBtn = document.getElementById('add-solution-link');
+    if (addSolutionLinkBtn) {
+        addSolutionLinkBtn.addEventListener('click', function() {
+            if (!window.footerEnData.solution_links) {
+                window.footerEnData.solution_links = [];
+            }
+            
+            window.footerEnData.solution_links.push({
+                text: 'New Solution',
+                link: '#'
+            });
+            
+            document.getElementById('footer-solution-links-container').innerHTML = renderSolutionLinks();
+            bindFooterDeleteEvents();
+        });
+    }
+    
+    // 保存页脚设置按钮
+    const saveFooterBtn = document.getElementById('save-footer');
+    if (saveFooterBtn) {
+        saveFooterBtn.addEventListener('click', saveFooterSettings);
+    }
+    
+    // 绑定删除链接按钮事件
+    bindFooterDeleteEvents();
+}
+
+/**
+ * 绑定页脚删除链接按钮事件
+ */
+function bindFooterDeleteEvents() {
+    // 删除社交链接按钮
+    const deleteSocialLinkBtns = document.querySelectorAll('.delete-social-link');
+    deleteSocialLinkBtns.forEach(btn => {
+        btn.addEventListener('click', function() {
+            const index = parseInt(this.getAttribute('data-index'));
+            
+            if (window.footerEnData.social_links && index >= 0 && index < window.footerEnData.social_links.length) {
+                window.footerEnData.social_links.splice(index, 1);
+                document.getElementById('footer-social-links-container').innerHTML = renderSocialLinks();
+                bindFooterDeleteEvents();
+            }
+        });
+    });
+    
+    // 删除快速链接按钮
+    const deleteQuickLinkBtns = document.querySelectorAll('.delete-quick-link');
+    deleteQuickLinkBtns.forEach(btn => {
+        btn.addEventListener('click', function() {
+            const index = parseInt(this.getAttribute('data-index'));
+            
+            if (window.footerEnData.quick_links && index >= 0 && index < window.footerEnData.quick_links.length) {
+                window.footerEnData.quick_links.splice(index, 1);
+                document.getElementById('footer-quick-links-container').innerHTML = renderQuickLinks();
+                bindFooterDeleteEvents();
+            }
+        });
+    });
+    
+    // 删除解决方案链接按钮
+    const deleteSolutionLinkBtns = document.querySelectorAll('.delete-solution-link');
+    deleteSolutionLinkBtns.forEach(btn => {
+        btn.addEventListener('click', function() {
+            const index = parseInt(this.getAttribute('data-index'));
+            
+            if (window.footerEnData.solution_links && index >= 0 && index < window.footerEnData.solution_links.length) {
+                window.footerEnData.solution_links.splice(index, 1);
+                document.getElementById('footer-solution-links-container').innerHTML = renderSolutionLinks();
+                bindFooterDeleteEvents();
+            }
+        });
+    });
+}
+
+/**
+ * 保存页脚设置
+ */
+async function saveFooterSettings() {
+    try {
+        // 收集所有页脚数据
+        const companyInfo = document.getElementById('footer-company-info').value;
+        const address = document.getElementById('footer-address').value;
+        const phone = document.getElementById('footer-phone').value;
+        const email = document.getElementById('footer-email').value;
+        const hours = document.getElementById('footer-hours').value;
+        const copyright = document.getElementById('footer-copyright').value;
+        const icp = document.getElementById('footer-icp').value;
+        
+        // 更新页脚数据对象
+        const footerData = {
+            company_info: companyInfo,
+            social_links: window.footerEnData.social_links || [],
+            quick_links: window.footerEnData.quick_links || [],
+            solution_links: window.footerEnData.solution_links || [],
+            contact_info: {
+                address: address,
+                phone: phone,
+                email: email,
+                hours: hours
+            },
+            copyright: copyright,
+            icp: icp
+        };
+        
+        // 发送到服务器
+        const response = await fetch('api/english_content.php?type=footer', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(footerData)
+        });
+        
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        
+        const result = await response.json();
+        
+        if (!result.success) {
+            throw new Error(result.message || '保存失败');
+        }
+        
+        // 更新全局数据
+        window.footerEnData = footerData;
+        
+        // 显示成功消息
+        showAlert('success', '页脚设置已成功保存！');
+    } catch (error) {
+        console.error('保存页脚设置失败:', error);
+        showAlert('danger', '保存失败: ' + error.message);
+    }
+}
+
+/**
+ * 渲染导航内容
+ */
+function renderNavigationContent() {
+    const navigationContainer = document.getElementById('navigation-en-container');
+    if (!navigationContainer) {
+        console.error('未找到导航容器元素');
+        return;
+    }
+    
+    // 确保window.navigationEnData有正确的结构
+    if (!window.navigationEnData) {
+        console.warn('导航数据为null，初始化为空对象');
+        window.navigationEnData = {
+            main_nav: [],
+            login_buttons: []
+        };
+    }
+    
+    // 构建导航编辑界面
+    navigationContainer.innerHTML = `
+        <div class="card mt-3">
+            <div class="card-body">
+                <ul class="nav nav-tabs" id="navigationTab" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link active" id="main-nav-tab" data-bs-toggle="tab" data-bs-target="#main-nav-content" type="button" role="tab">主导航</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="login-buttons-tab" data-bs-toggle="tab" data-bs-target="#login-buttons-content" type="button" role="tab">登录按钮</button>
+                    </li>
+                </ul>
+                
+                <div class="tab-content mt-3" id="navigationTabContent">
+                    <!-- 主导航内容 -->
+                    <div class="tab-pane fade show active" id="main-nav-content" role="tabpanel">
+                        <div id="main-nav-container">
+                            ${renderMainNavItems()}
+                        </div>
+                        <button id="add-main-nav-item" class="btn btn-outline-primary mt-3">
+                            <i class="bi bi-plus"></i> 添加导航项
+                        </button>
+                    </div>
+                    
+                    <!-- 登录按钮内容 -->
+                    <div class="tab-pane fade" id="login-buttons-content" role="tabpanel">
+                        <div id="login-buttons-container">
+                            ${renderLoginButtons()}
+                        </div>
+                        <button id="add-login-button" class="btn btn-outline-primary mt-3">
+                            <i class="bi bi-plus"></i> 添加登录按钮
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="mt-3">
+                    <button id="save-navigation" class="btn btn-primary">保存导航设置</button>
+                </div>
+            </div>
+        </div>
+    `;
+    
+    // 初始化Bootstrap标签页
+    const navigationTab = document.getElementById('navigationTab');
+    const tabs = navigationTab.querySelectorAll('button[data-bs-toggle="tab"]');
+    
+    tabs.forEach(tab => {
+        tab.addEventListener('click', function() {
+            // 隐藏所有标签页内容
+            document.querySelectorAll('#navigationTabContent .tab-pane').forEach(pane => {
+                pane.classList.remove('show', 'active');
+            });
+            
+            // 取消所有标签激活状态
+            tabs.forEach(t => {
+                t.classList.remove('active');
+            });
+            
+            // 显示当前标签页内容并激活当前标签
+            const targetId = this.getAttribute('data-bs-target');
+            document.querySelector(targetId).classList.add('show', 'active');
+            this.classList.add('active');
+        });
+    });
+    
+    // 绑定导航相关事件
+    bindNavigationEvents();
+}
+
+/**
+ * 渲染主导航项
+ */
+function renderMainNavItems() {
+    let html = '';
+    
+    if (Array.isArray(window.navigationEnData.main_nav) && window.navigationEnData.main_nav.length > 0) {
+        window.navigationEnData.main_nav.forEach((item, index) => {
+            let dropdownItemsHtml = '';
+            
+            // 如果是下拉菜单，则渲染下拉项
+            if (item.dropdown && Array.isArray(item.dropdown_items)) {
+                item.dropdown_items.forEach((dropdownItem, dropdownIndex) => {
+                    dropdownItemsHtml += `
+                        <div class="dropdown-item input-group mb-2" data-parent-index="${index}" data-dropdown-index="${dropdownIndex}">
+                            <input type="text" class="form-control dropdown-item-title" value="${dropdownItem.title || ''}" placeholder="标题">
+                            <input type="text" class="form-control dropdown-item-link" value="${dropdownItem.link || ''}" placeholder="链接">
+                            <button class="btn btn-outline-danger delete-dropdown-item" type="button" data-parent-index="${index}" data-dropdown-index="${dropdownIndex}">
+                                <i class="bi bi-trash"></i>
+                            </button>
+                        </div>
+                    `;
+                });
+            }
+            
+            html += `
+                <div class="card mb-3 nav-item" data-index="${index}">
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                        <h5 class="mb-0">导航项 #${index + 1}</h5>
+                        <button class="btn btn-danger btn-sm delete-nav-item" data-index="${index}">
+                            <i class="bi bi-trash"></i>
+                        </button>
+                    </div>
+                    <div class="card-body">
+                        <div class="mb-3 row">
+                            <div class="col-md-6">
+                                <label class="form-label">标题</label>
+                                <input type="text" class="form-control nav-item-title" value="${item.title || ''}" data-index="${index}">
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">链接</label>
+                                <input type="text" class="form-control nav-item-link" value="${item.link || ''}" data-index="${index}">
+                            </div>
+                        </div>
+                        
+                        <div class="mb-3 form-check">
+                            <input type="checkbox" class="form-check-input nav-item-active" id="nav-active-${index}" 
+                                ${item.active ? 'checked' : ''} data-index="${index}">
+                            <label class="form-check-label" for="nav-active-${index}">活动状态</label>
+                        </div>
+                        
+                        <div class="mb-3 form-check">
+                            <input type="checkbox" class="form-check-input nav-item-dropdown" id="nav-dropdown-${index}" 
+                                ${item.dropdown ? 'checked' : ''} data-index="${index}">
+                            <label class="form-check-label" for="nav-dropdown-${index}">下拉菜单</label>
+                        </div>
+                        
+                        <div class="dropdown-container mb-3" id="dropdown-container-${index}" 
+                            style="${item.dropdown ? '' : 'display: none;'}">
+                            <h6>下拉菜单项</h6>
+                            <div class="dropdown-items mb-2" id="dropdown-items-${index}">
+                                ${dropdownItemsHtml}
+                            </div>
+                            <button class="btn btn-sm btn-outline-secondary add-dropdown-item" data-index="${index}">
+                                <i class="bi bi-plus"></i> 添加下拉项
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `;
+        });
+    } else {
+        html = '<div class="alert alert-info">暂无导航项，请添加。</div>';
+    }
+    
+    return html;
+}
+
+/**
+ * 渲染登录按钮
+ */
+function renderLoginButtons() {
+    let html = '';
+    
+    if (Array.isArray(window.navigationEnData.login_buttons) && window.navigationEnData.login_buttons.length > 0) {
+        window.navigationEnData.login_buttons.forEach((button, index) => {
+            html += `
+                <div class="card mb-3 login-button" data-index="${index}">
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                        <h5 class="mb-0">按钮 #${index + 1}</h5>
+                        <button class="btn btn-danger btn-sm delete-login-button" data-index="${index}">
+                            <i class="bi bi-trash"></i>
+                        </button>
+                    </div>
+                    <div class="card-body">
+                        <div class="mb-3 row">
+                            <div class="col-md-6">
+                                <label class="form-label">标题</label>
+                                <input type="text" class="form-control login-button-title" value="${button.title || ''}" data-index="${index}">
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">链接</label>
+                                <input type="text" class="form-control login-button-link" value="${button.link || ''}" data-index="${index}">
+                            </div>
+                        </div>
+                        
+                        <div class="mb-3 row">
+                            <div class="col-md-6">
+                                <label class="form-label">样式</label>
+                                <select class="form-select login-button-style" data-index="${index}">
+                                    <option value="primary" ${button.style === 'primary' ? 'selected' : ''}>主要</option>
+                                    <option value="secondary" ${button.style === 'secondary' ? 'selected' : ''}>次要</option>
+                                    <option value="success" ${button.style === 'success' ? 'selected' : ''}>成功</option>
+                                    <option value="danger" ${button.style === 'danger' ? 'selected' : ''}>危险</option>
+                                    <option value="warning" ${button.style === 'warning' ? 'selected' : ''}>警告</option>
+                                    <option value="info" ${button.style === 'info' ? 'selected' : ''}>信息</option>
+                                    <option value="light" ${button.style === 'light' ? 'selected' : ''}>浅色</option>
+                                    <option value="dark" ${button.style === 'dark' ? 'selected' : ''}>深色</option>
+                                    <option value="outline-primary" ${button.style === 'outline-primary' ? 'selected' : ''}>主要轮廓</option>
+                                    <option value="outline-secondary" ${button.style === 'outline-secondary' ? 'selected' : ''}>次要轮廓</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">CSS类名</label>
+                                <input type="text" class="form-control login-button-class" value="${button.class || ''}" data-index="${index}">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+        });
+    } else {
+        html = '<div class="alert alert-info">暂无登录按钮，请添加。</div>';
+    }
+    
+    return html;
+}
+
+/**
+ * 绑定导航相关事件
+ */
+function bindNavigationEvents() {
+    // 添加主导航项按钮
+    const addMainNavItemBtn = document.getElementById('add-main-nav-item');
+    if (addMainNavItemBtn) {
+        addMainNavItemBtn.addEventListener('click', function() {
+            if (!window.navigationEnData.main_nav) {
+                window.navigationEnData.main_nav = [];
+            }
+            
+            window.navigationEnData.main_nav.push({
+                title: 'New Item',
+                link: '#',
+                active: false,
+                dropdown: false,
+                dropdown_items: []
+            });
+            
+            document.getElementById('main-nav-container').innerHTML = renderMainNavItems();
+            bindNavigationEventListeners();
+        });
+    }
+    
+    // 添加登录按钮
+    const addLoginButtonBtn = document.getElementById('add-login-button');
+    if (addLoginButtonBtn) {
+        addLoginButtonBtn.addEventListener('click', function() {
+            if (!window.navigationEnData.login_buttons) {
+                window.navigationEnData.login_buttons = [];
+            }
+            
+            window.navigationEnData.login_buttons.push({
+                title: 'New Button',
+                link: '#',
+                style: 'primary',
+                class: 'btn btn-primary'
+            });
+            
+            document.getElementById('login-buttons-container').innerHTML = renderLoginButtons();
+            bindNavigationEventListeners();
+        });
+    }
+    
+    // 保存导航设置按钮
+    const saveNavigationBtn = document.getElementById('save-navigation');
+    if (saveNavigationBtn) {
+        saveNavigationBtn.addEventListener('click', saveNavigationSettings);
+    }
+    
+    // 绑定其他事件监听器
+    bindNavigationEventListeners();
+}
+
+/**
+ * 绑定导航事件监听器
+ */
+function bindNavigationEventListeners() {
+    // 删除导航项按钮
+    const deleteNavItemBtns = document.querySelectorAll('.delete-nav-item');
+    deleteNavItemBtns.forEach(btn => {
+        btn.addEventListener('click', function() {
+            const index = parseInt(this.getAttribute('data-index'));
+            
+            if (window.navigationEnData.main_nav && index >= 0 && index < window.navigationEnData.main_nav.length) {
+                window.navigationEnData.main_nav.splice(index, 1);
+                document.getElementById('main-nav-container').innerHTML = renderMainNavItems();
+                bindNavigationEventListeners();
+            }
+        });
+    });
+    
+    // 删除登录按钮
+    const deleteLoginButtonBtns = document.querySelectorAll('.delete-login-button');
+    deleteLoginButtonBtns.forEach(btn => {
+        btn.addEventListener('click', function() {
+            const index = parseInt(this.getAttribute('data-index'));
+            
+            if (window.navigationEnData.login_buttons && index >= 0 && index < window.navigationEnData.login_buttons.length) {
+                window.navigationEnData.login_buttons.splice(index, 1);
+                document.getElementById('login-buttons-container').innerHTML = renderLoginButtons();
+                bindNavigationEventListeners();
+            }
+        });
+    });
+    
+    // 导航项标题和链接输入事件
+    document.querySelectorAll('.nav-item-title, .nav-item-link').forEach(input => {
+        input.addEventListener('input', function() {
+            const index = parseInt(this.getAttribute('data-index'));
+            const field = this.classList.contains('nav-item-title') ? 'title' : 'link';
+            
+            if (window.navigationEnData.main_nav && index >= 0 && index < window.navigationEnData.main_nav.length) {
+                window.navigationEnData.main_nav[index][field] = this.value;
+            }
+        });
+    });
+    
+    // 导航项活动状态复选框
+    document.querySelectorAll('.nav-item-active').forEach(checkbox => {
+        checkbox.addEventListener('change', function() {
+            const index = parseInt(this.getAttribute('data-index'));
+            
+            if (window.navigationEnData.main_nav && index >= 0 && index < window.navigationEnData.main_nav.length) {
+                window.navigationEnData.main_nav[index].active = this.checked;
+            }
+        });
+    });
+    
+    // 导航项下拉菜单复选框
+    document.querySelectorAll('.nav-item-dropdown').forEach(checkbox => {
+        checkbox.addEventListener('change', function() {
+            const index = parseInt(this.getAttribute('data-index'));
+            
+            if (window.navigationEnData.main_nav && index >= 0 && index < window.navigationEnData.main_nav.length) {
+                window.navigationEnData.main_nav[index].dropdown = this.checked;
+                
+                // 显示或隐藏下拉菜单容器
+                const dropdownContainer = document.getElementById(`dropdown-container-${index}`);
+                if (dropdownContainer) {
+                    dropdownContainer.style.display = this.checked ? '' : 'none';
+                }
+                
+                // 确保dropdown_items数组存在
+                if (this.checked && !Array.isArray(window.navigationEnData.main_nav[index].dropdown_items)) {
+                    window.navigationEnData.main_nav[index].dropdown_items = [];
+                }
+            }
+        });
+    });
+    
+    // 添加下拉项按钮
+    document.querySelectorAll('.add-dropdown-item').forEach(btn => {
+        btn.addEventListener('click', function() {
+            const index = parseInt(this.getAttribute('data-index'));
+            
+            if (window.navigationEnData.main_nav && index >= 0 && index < window.navigationEnData.main_nav.length) {
+                if (!Array.isArray(window.navigationEnData.main_nav[index].dropdown_items)) {
+                    window.navigationEnData.main_nav[index].dropdown_items = [];
+                }
+                
+                window.navigationEnData.main_nav[index].dropdown_items.push({
+                    title: 'New Dropdown Item',
+                    link: '#'
+                });
+                
+                // 重新渲染下拉项
+                const dropdownItemsContainer = document.getElementById(`dropdown-items-${index}`);
+                if (dropdownItemsContainer) {
+                    let html = '';
+                    window.navigationEnData.main_nav[index].dropdown_items.forEach((item, dIndex) => {
+                        html += `
+                            <div class="dropdown-item input-group mb-2" data-parent-index="${index}" data-dropdown-index="${dIndex}">
+                                <input type="text" class="form-control dropdown-item-title" value="${item.title || ''}" placeholder="标题">
+                                <input type="text" class="form-control dropdown-item-link" value="${item.link || ''}" placeholder="链接">
+                                <button class="btn btn-outline-danger delete-dropdown-item" type="button" data-parent-index="${index}" data-dropdown-index="${dIndex}">
+                                    <i class="bi bi-trash"></i>
+                                </button>
+                            </div>
+                        `;
+                    });
+                    
+                    dropdownItemsContainer.innerHTML = html;
+                    bindDropdownItemEvents();
+                }
+            }
+        });
+    });
+    
+    // 登录按钮输入事件
+    document.querySelectorAll('.login-button-title, .login-button-link, .login-button-class').forEach(input => {
+        input.addEventListener('input', function() {
+            const index = parseInt(this.getAttribute('data-index'));
+            const field = this.classList.contains('login-button-title') ? 'title' : 
+                         (this.classList.contains('login-button-link') ? 'link' : 'class');
+            
+            if (window.navigationEnData.login_buttons && index >= 0 && index < window.navigationEnData.login_buttons.length) {
+                window.navigationEnData.login_buttons[index][field] = this.value;
+            }
+        });
+    });
+    
+    // 登录按钮样式选择事件
+    document.querySelectorAll('.login-button-style').forEach(select => {
+        select.addEventListener('change', function() {
+            const index = parseInt(this.getAttribute('data-index'));
+            
+            if (window.navigationEnData.login_buttons && index >= 0 && index < window.navigationEnData.login_buttons.length) {
+                window.navigationEnData.login_buttons[index].style = this.value;
+            }
+        });
+    });
+    
+    // 绑定下拉项事件
+    bindDropdownItemEvents();
+}
+
+/**
+ * 绑定下拉项事件
+ */
+function bindDropdownItemEvents() {
+    // 下拉项输入事件
+    document.querySelectorAll('.dropdown-item-title, .dropdown-item-link').forEach(input => {
+        input.addEventListener('input', function() {
+            const parentIndex = parseInt(this.closest('.dropdown-item').getAttribute('data-parent-index'));
+            const dropdownIndex = parseInt(this.closest('.dropdown-item').getAttribute('data-dropdown-index'));
+            const field = this.classList.contains('dropdown-item-title') ? 'title' : 'link';
+            
+            if (window.navigationEnData.main_nav && 
+                parentIndex >= 0 && parentIndex < window.navigationEnData.main_nav.length &&
+                window.navigationEnData.main_nav[parentIndex].dropdown_items &&
+                dropdownIndex >= 0 && dropdownIndex < window.navigationEnData.main_nav[parentIndex].dropdown_items.length) {
+                window.navigationEnData.main_nav[parentIndex].dropdown_items[dropdownIndex][field] = this.value;
+            }
+        });
+    });
+    
+    // 删除下拉项按钮
+    document.querySelectorAll('.delete-dropdown-item').forEach(btn => {
+        btn.addEventListener('click', function() {
+            const parentIndex = parseInt(this.getAttribute('data-parent-index'));
+            const dropdownIndex = parseInt(this.getAttribute('data-dropdown-index'));
+            
+            if (window.navigationEnData.main_nav && 
+                parentIndex >= 0 && parentIndex < window.navigationEnData.main_nav.length &&
+                window.navigationEnData.main_nav[parentIndex].dropdown_items &&
+                dropdownIndex >= 0 && dropdownIndex < window.navigationEnData.main_nav[parentIndex].dropdown_items.length) {
+                
+                window.navigationEnData.main_nav[parentIndex].dropdown_items.splice(dropdownIndex, 1);
+                
+                // 重新渲染下拉项
+                const dropdownItemsContainer = document.getElementById(`dropdown-items-${parentIndex}`);
+                if (dropdownItemsContainer) {
+                    let html = '';
+                    window.navigationEnData.main_nav[parentIndex].dropdown_items.forEach((item, dIndex) => {
+                        html += `
+                            <div class="dropdown-item input-group mb-2" data-parent-index="${parentIndex}" data-dropdown-index="${dIndex}">
+                                <input type="text" class="form-control dropdown-item-title" value="${item.title || ''}" placeholder="标题">
+                                <input type="text" class="form-control dropdown-item-link" value="${item.link || ''}" placeholder="链接">
+                                <button class="btn btn-outline-danger delete-dropdown-item" type="button" data-parent-index="${parentIndex}" data-dropdown-index="${dIndex}">
+                                    <i class="bi bi-trash"></i>
+                                </button>
+                            </div>
+                        `;
+                    });
+                    
+                    dropdownItemsContainer.innerHTML = html;
+                    bindDropdownItemEvents();
+                }
+            }
+        });
+    });
+}
+
+/**
+ * 保存导航设置
+ */
+async function saveNavigationSettings() {
+    try {
+        // 发送到服务器
+        const response = await fetch('api/english_content.php?type=navigation', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(window.navigationEnData)
+        });
+        
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        
+        const result = await response.json();
+        
+        if (!result.success) {
+            throw new Error(result.message || '保存失败');
+        }
+        
+        // 显示成功消息
+        showAlert('success', '导航设置已成功保存！');
+    } catch (error) {
+        console.error('保存导航设置失败:', error);
+        showAlert('danger', '保存失败: ' + error.message);
+    }
+}
+
+/**
+ * 渲染合作案例内容
+ */
+function renderPartnerCases() {
+    const container = document.getElementById('partner-cases-en-container');
+    const titleInput = document.getElementById('partner-cases-en-title');
+    
+    if (!container || !titleInput) return;
+    
+    container.innerHTML = '';
+    
+    // 设置标题
+    if (partnerCasesData && partnerCasesData.title) {
+        titleInput.value = partnerCasesData.title;
+    }
+    
+    // 添加数据有效性检查
+    if (!partnerCasesData || !partnerCasesData.cases) {
+        console.error('合作案例数据无效:', partnerCasesData);
+        partnerCasesData = { title: '', cases: [] };
+    }
+    
+    partnerCasesData.cases.forEach((caseItem, index) => {
+        const caseElement = document.createElement('div');
+        caseElement.className = 'case-item card mb-3';
+        caseElement.innerHTML = `
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <h5 class="mb-0">合作案例 #${index + 1}</h5>
+                <button class="btn btn-danger btn-sm delete-partner-case" data-index="${index}">
+                    <i class="bi bi-trash"></i>
+                </button>
+            </div>
+            <div class="card-body">
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <label class="form-label">图片路径</label>
+                        <input type="text" class="form-control case-image" value="${caseItem.image || ''}">
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label">标题</label>
+                        <input type="text" class="form-control case-title" value="${caseItem.title || ''}">
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">描述</label>
+                    <textarea class="form-control case-description" rows="3">${caseItem.description || ''}</textarea>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <label class="form-label">合作伙伴名称</label>
+                        <input type="text" class="form-control case-partner-name" value="${caseItem.partner_name || ''}">
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label">合作伙伴图标</label>
+                        <input type="text" class="form-control case-partner-icon" value="${caseItem.partner_icon || ''}">
+                    </div>
+                </div>
+            </div>
+        `;
+        
+        container.appendChild(caseElement);
+    });
+    
+    // 绑定删除合作案例按钮事件
+    bindDeletePartnerCaseEvents();
+    
+    // 绑定添加合作案例按钮事件
+    const addPartnerCaseBtn = document.getElementById('add-partner-case-en');
+    if (addPartnerCaseBtn) {
+        addPartnerCaseBtn.removeEventListener('click', addPartnerCase);
+        addPartnerCaseBtn.addEventListener('click', addPartnerCase);
+    }
+    
+    // 绑定保存合作案例按钮事件
+    const savePartnerCasesBtn = document.getElementById('save-partner-cases-en');
+    if (savePartnerCasesBtn) {
+        savePartnerCasesBtn.removeEventListener('click', savePartnerCases);
+        savePartnerCasesBtn.addEventListener('click', savePartnerCases);
+    }
+}
+
+/**
+ * 绑定删除合作案例按钮事件
+ */
+function bindDeletePartnerCaseEvents() {
+    const deleteButtons = document.querySelectorAll('.delete-partner-case');
+    deleteButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            const index = parseInt(this.getAttribute('data-index'));
+            if (!isNaN(index) && partnerCasesData.cases && index >= 0 && index < partnerCasesData.cases.length) {
+                partnerCasesData.cases.splice(index, 1);
+                renderPartnerCases();
+            }
+        });
+    });
+}
+
+/**
+ * 添加新的合作案例
+ */
+function addPartnerCase() {
+    // 确保partnerCasesData被正确初始化
+    if (!partnerCasesData) {
+        partnerCasesData = { title: '', cases: [] };
+    }
+    if (!partnerCasesData.cases) {
+        partnerCasesData.cases = [];
+    }
+    
+    // 添加新案例
+    partnerCasesData.cases.push({
+        title: '新合作案例',
+        description: '案例详细描述...',
+        image: 'images/case1.jpg',
+        partner_name: '合作伙伴名称',
+        partner_icon: 'bi bi-building'
+    });
+    
+    // 重新渲染案例列表
+    renderPartnerCases();
+}
+
+/**
+ * 保存合作案例数据
+ */
+async function savePartnerCases() {
+    try {
+        // 收集合作案例数据
+        const titleInput = document.getElementById('partner-cases-en-title');
+        const casesData = { 
+            title: titleInput ? titleInput.value : '',
+            cases: []
+        };
+        
+        // 收集每个案例的数据
+        const caseItems = document.querySelectorAll('.case-item');
+        caseItems.forEach(item => {
+            const caseData = {
+                image: item.querySelector('.case-image').value,
+                title: item.querySelector('.case-title').value,
+                description: item.querySelector('.case-description').value,
+                partner_name: item.querySelector('.case-partner-name').value,
+                partner_icon: item.querySelector('.case-partner-icon').value
+            };
+            
+            casesData.cases.push(caseData);
+        });
+        
+        // 发送数据到服务器
+        const response = await fetch('api/save-partner-cases-en.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(casesData)
+        });
+        
+        const result = await response.json();
+        
+        if (result.success) {
+            showAlert('success', '合作案例数据保存成功！');
+            // 更新本地数据
+            partnerCasesData = casesData;
+        } else {
+            showAlert('danger', `保存失败: ${result.message}`);
+        }
+    } catch (error) {
+        console.error('保存合作案例数据出错:', error);
+        showAlert('danger', '保存失败，请查看控制台获取详细错误信息。');
+    }
 }
 
 // 导出模块

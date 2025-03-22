@@ -40,6 +40,7 @@ if (!$postData || !($data = json_decode($postData, true))) {
 
 // 内容文件路径
 $filePath = '../../data/solutions.json';
+$enFilePath = '../../data/solutions_en.json';
 
 // 检查文件是否可写
 if (!is_writable(dirname($filePath)) && !file_exists($filePath)) {
@@ -57,6 +58,22 @@ try {
         throw new Exception('数据格式不正确，缺少必要字段');
     }
     
+    // 首先加载当前的中文和英文数据
+    $currentZhData = file_exists($filePath) ? json_decode(file_get_contents($filePath), true) : ['title' => '解决方案', 'plans' => []];
+    $currentEnData = file_exists($enFilePath) ? json_decode(file_get_contents($enFilePath), true) : ['title' => 'Solutions', 'plans' => []];
+    
+    // 处理数据以过滤英文内容
+    $plansData = json_decode($postData, true);
+    $chinesePlans = [];
+    
+    // 构建英文解决方案标题的映射，用于排除相似的英文内容
+    $englishTitles = [];
+    if (isset($currentEnData['plans']) && is_array($currentEnData['plans'])) {
+        foreach ($currentEnData['plans'] as $plan) {
+            $englishTitles[] = strtolower($plan['title']);
+        }
+    }
+    
     // 验证解决方案数据
     foreach ($data['plans'] as $plan) {
         if (!isset($plan['title']) || !isset($plan['subtitle']) || 
@@ -64,15 +81,63 @@ try {
             !isset($plan['link']) || !is_array($plan['features'])) {
             throw new Exception('解决方案数据格式不正确，缺少必要字段');
         }
+        
+        // 确保所有features项都是字符串
+        foreach ($plan['features'] as $feature) {
+            if (!is_string($feature)) {
+                throw new Exception('特性项必须是字符串');
+            }
+        }
+        
+        // 规则1: 检查是否至少有一个中文字符在标题或副标题中
+        $hasChinese = preg_match("/[\x{4e00}-\x{9fa5}]/u", $plan['title'] . $plan['subtitle']);
+        
+        // 规则2: 检查是否与英文内容相似（忽略大小写）
+        $isMatchingEnglish = false;
+        $currentTitle = strtolower($plan['title']);
+        
+        foreach ($englishTitles as $enTitle) {
+            // 检查是否有超过70%的相似度
+            similar_text($currentTitle, $enTitle, $percent);
+            if ($percent > 70) {
+                $isMatchingEnglish = true;
+                break;
+            }
+        }
+        
+        // 仅当有中文内容且不匹配任何英文内容时，才保留
+        if ($hasChinese && !$isMatchingEnglish) {
+            // 确保没有重复添加
+            $isDuplicate = false;
+            foreach ($chinesePlans as $existingPlan) {
+                if ($existingPlan['title'] === $plan['title']) {
+                    $isDuplicate = true;
+                    break;
+                }
+            }
+            
+            if (!$isDuplicate) {
+                $chinesePlans[] = $plan;
+            }
+        }
     }
     
-    // 准备要保存的数据
-    $saveData = [
-        'title' => $data['title'],
-        'plans' => $data['plans']
-    ];
-    
-    $result = file_put_contents($filePath, json_encode($saveData, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT));
+    // 如果没有找到中文解决方案，就保留当前的中文数据
+    if (empty($chinesePlans)) {
+        // 不做任何修改，保持原始中文数据
+        echo json_encode([
+            'success' => true,
+            'message' => '没有检测到新的中文解决方案数据，保持现有数据不变'
+        ]);
+        exit;
+    } else {
+        // 更新数据并保存
+        $saveData = [
+            'title' => $data['title'],
+            'plans' => $chinesePlans
+        ];
+        $result = file_put_contents($filePath, json_encode($saveData, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT));
+    }
     
     if ($result === false) {
         throw new Exception('写入文件失败');

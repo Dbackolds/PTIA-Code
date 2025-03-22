@@ -52,7 +52,28 @@ if (!is_writable(dirname($filePath)) && !file_exists($filePath)) {
 
 // 写入文件
 try {
-    $result = file_put_contents($filePath, $postData);
+    // 剔除可能被自动添加的英文轮播图数据
+    // 只保留中文轮播图数据
+    $bannersData = json_decode($postData, true);
+    $chineseBanners = [];
+    
+    // 过滤轮播图数据，只保留中文轮播图
+    // 通常中文轮播图的标题和描述包含中文字符
+    foreach ($bannersData['banners'] as $banner) {
+        // 检查是否至少有一个中文字符在标题或描述中
+        if (preg_match("/[\x{4e00}-\x{9fa5}]/u", $banner['title'] . $banner['description'])) {
+            $chineseBanners[] = $banner;
+        }
+    }
+    
+    // 如果没有找到中文轮播图，就使用原始数据
+    if (empty($chineseBanners) && !empty($bannersData['banners'])) {
+        $result = file_put_contents($filePath, $postData);
+    } else {
+        // 重构数据并保存
+        $bannersData['banners'] = $chineseBanners;
+        $result = file_put_contents($filePath, json_encode($bannersData));
+    }
     
     if ($result === false) {
         throw new Exception('写入文件失败');

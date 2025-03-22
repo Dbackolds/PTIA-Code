@@ -24,7 +24,7 @@ $current_page = basename($_SERVER['PHP_SELF'], '.php');
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>内容管理 - 未来科技</title>
+    <title>像素科技 - 发展无限可能</title>
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="../css/custom.css">
@@ -92,7 +92,7 @@ $current_page = basename($_SERVER['PHP_SELF'], '.php');
 <body>
     <header class="navbar navbar-dark sticky-top bg-primary flex-md-nowrap p-0 shadow">
         <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="#">
-            <img src="../images/logo-white.png" alt="未来科技" width="120">
+            <img src="../images/logo-white.png" alt="像素科技" width="120">
         </a>
         <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu">
             <span class="navbar-toggler-icon"></span>

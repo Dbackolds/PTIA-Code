@@ -20,6 +20,21 @@ async function loadAnnouncementData() {
     }
 }
 
+// 加载英文公告数据
+async function loadAnnouncementDataEn() {
+    try {
+        const response = await fetch('../data/announcement_en.json');
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        return await response.json();
+    } catch (error) {
+        console.error('加载英文公告数据失败:', error);
+        showAlert('danger', '加载英文公告数据失败，请刷新页面重试！');
+        return null;
+    }
+}
+
 // 加载云产品数据
 async function loadCloudProductsData() {
     try {
@@ -31,6 +46,21 @@ async function loadCloudProductsData() {
     } catch (error) {
         console.error('加载云产品数据失败:', error);
         showAlert('danger', '加载云产品数据失败，请刷新页面重试！');
+        return null;
+    }
+}
+
+// 加载英文云产品数据
+async function loadCloudProductsDataEn() {
+    try {
+        const response = await fetch('../data/cloud_products_en.json');
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        return await response.json();
+    } catch (error) {
+        console.error('加载英文云产品数据失败:', error);
+        showAlert('danger', '加载英文云产品数据失败，请刷新页面重试！');
         return null;
     }
 }
@@ -50,6 +80,21 @@ async function loadFeaturesData() {
     }
 }
 
+// 加载英文特性数据
+async function loadFeaturesDataEn() {
+    try {
+        const response = await fetch('../data/features_en.json');
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        return await response.json();
+    } catch (error) {
+        console.error('加载英文特性数据失败:', error);
+        showAlert('danger', '加载英文特性数据失败，请刷新页面重试！');
+        return null;
+    }
+}
+
 // 加载案例数据
 async function loadCaseStudiesData() {
     try {
@@ -61,6 +106,21 @@ async function loadCaseStudiesData() {
     } catch (error) {
         console.error('加载案例数据失败:', error);
         showAlert('danger', '加载案例数据失败，请刷新页面重试！');
+        return null;
+    }
+}
+
+// 加载英文案例数据
+async function loadCaseStudiesDataEn() {
+    try {
+        const response = await fetch('../data/case_studies_en.json');
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        return await response.json();
+    } catch (error) {
+        console.error('加载英文案例数据失败:', error);
+        showAlert('danger', '加载英文案例数据失败，请刷新页面重试！');
         return null;
     }
 }
@@ -80,6 +140,21 @@ async function loadTestimonialsData() {
     }
 }
 
+// 加载英文评价数据
+async function loadTestimonialsDataEn() {
+    try {
+        const response = await fetch('../data/testimonials_en.json');
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        return await response.json();
+    } catch (error) {
+        console.error('加载英文评价数据失败:', error);
+        showAlert('danger', '加载英文评价数据失败，请刷新页面重试！');
+        return null;
+    }
+}
+
 // 加载解决方案数据
 async function loadSolutionsData() {
     try {
@@ -91,6 +166,21 @@ async function loadSolutionsData() {
     } catch (error) {
         console.error('加载解决方案数据失败:', error);
         showAlert('danger', '加载解决方案数据失败，请刷新页面重试！');
+        return null;
+    }
+}
+
+// 加载英文解决方案数据
+async function loadSolutionsDataEn() {
+    try {
+        const response = await fetch('../data/solutions_en.json');
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        return await response.json();
+    } catch (error) {
+        console.error('加载英文解决方案数据失败:', error);
+        showAlert('danger', '加载英文解决方案数据失败，请刷新页面重试！');
         return null;
     }
 }
@@ -110,6 +200,21 @@ async function loadBannersData() {
     }
 }
 
+// 加载英文轮播图数据
+async function loadBannersDataEn() {
+    try {
+        const response = await fetch('../data/banners_en.json');
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        return await response.json();
+    } catch (error) {
+        console.error('加载英文轮播图数据失败:', error);
+        showAlert('danger', '加载英文轮播图数据失败，请刷新页面重试！');
+        return null;
+    }
+}
+
 // 加载页脚数据
 async function loadFooterData() {
     try {
@@ -121,6 +226,21 @@ async function loadFooterData() {
     } catch (error) {
         console.error('加载页脚数据失败:', error);
         showAlert('danger', '加载页脚数据失败，请刷新页面重试！');
+        return null;
+    }
+}
+
+// 加载英文页脚数据
+async function loadFooterDataEn() {
+    try {
+        const response = await fetch('../data/footer_en.json');
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        return await response.json();
+    } catch (error) {
+        console.error('加载英文页脚数据失败:', error);
+        showAlert('danger', '加载英文页脚数据失败，请刷新页面重试！');
         return null;
     }
 }
@@ -140,6 +260,21 @@ async function loadNavigationData() {
     }
 }
 
+// 加载英文导航数据
+async function loadNavigationDataEn() {
+    try {
+        const response = await fetch('../data/navigation_en.json');
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        return await response.json();
+    } catch (error) {
+        console.error('加载英文导航数据失败:', error);
+        showAlert('danger', '加载英文导航数据失败，请刷新页面重试！');
+        return null;
+    }
+}
+
 // 加载战略合作伙伴数据
 async function loadStrategicPartnersData() {
     try {
@@ -151,6 +286,21 @@ async function loadStrategicPartnersData() {
     } catch (error) {
         console.error('加载战略合作伙伴数据失败:', error);
         showAlert('danger', '加载战略合作伙伴数据失败，请刷新页面重试！');
+        return null;
+    }
+}
+
+// 加载英文战略合作伙伴数据
+async function loadStrategicPartnersDataEn() {
+    try {
+        const response = await fetch('../data/strategic_partners_en.json');
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        return await response.json();
+    } catch (error) {
+        console.error('加载英文战略合作伙伴数据失败:', error);
+        showAlert('danger', '加载英文战略合作伙伴数据失败，请刷新页面重试！');
         return null;
     }
 }
@@ -170,6 +320,21 @@ async function loadTechPartnersData() {
     }
 }
 
+// 加载英文技术合作伙伴数据
+async function loadTechPartnersDataEn() {
+    try {
+        const response = await fetch('../data/tech_partners_en.json');
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        return await response.json();
+    } catch (error) {
+        console.error('加载英文技术合作伙伴数据失败:', error);
+        showAlert('danger', '加载英文技术合作伙伴数据失败，请刷新页面重试！');
+        return null;
+    }
+}
+
 // 加载合作伙伴案例数据
 async function loadPartnerCasesData() {
     try {
@@ -181,6 +346,21 @@ async function loadPartnerCasesData() {
     } catch (error) {
         console.error('加载合作伙伴案例数据失败:', error);
         showAlert('danger', '加载合作伙伴案例数据失败，请刷新页面重试！');
+        return null;
+    }
+}
+
+// 加载英文合作伙伴案例数据
+async function loadPartnerCasesDataEn() {
+    try {
+        const response = await fetch('../data/partner_cases_en.json');
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        return await response.json();
+    } catch (error) {
+        console.error('加载英文合作伙伴案例数据失败:', error);
+        showAlert('danger', '加载英文合作伙伴案例数据失败，请刷新页面重试！');
         return null;
     }
 }
@@ -200,6 +380,21 @@ async function loadTeamMembersData() {
     }
 }
 
+// 加载英文团队成员数据
+async function loadTeamMembersDataEn() {
+    try {
+        const response = await fetch('../data/team_members_en.json');
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        return await response.json();
+    } catch (error) {
+        console.error('加载英文团队成员数据失败:', error);
+        showAlert('danger', '加载英文团队成员数据失败，请刷新页面重试！');
+        return null;
+    }
+}
+
 // 加载公司发展历程数据
 async function loadCompanyHistoryData() {
     try {
@@ -215,20 +410,49 @@ async function loadCompanyHistoryData() {
     }
 }
 
+// 加载英文公司发展历程数据
+async function loadCompanyHistoryDataEn() {
+    try {
+        const response = await fetch('../data/company_history_en.json');
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        return await response.json();
+    } catch (error) {
+        console.error('加载英文公司发展历程数据失败:', error);
+        showAlert('danger', '加载英文公司发展历程数据失败，请刷新页面重试！');
+        return null;
+    }
+}
+
 // 导出所有加载函数
 export {
     loadAnnouncementData,
+    loadAnnouncementDataEn,
     loadCloudProductsData,
+    loadCloudProductsDataEn,
     loadFeaturesData,
+    loadFeaturesDataEn,
     loadCaseStudiesData,
+    loadCaseStudiesDataEn,
     loadTestimonialsData,
+    loadTestimonialsDataEn,
     loadSolutionsData,
+    loadSolutionsDataEn,
     loadBannersData,
+    loadBannersDataEn,
     loadFooterData,
+    loadFooterDataEn,
     loadNavigationData,
+    loadNavigationDataEn,
     loadStrategicPartnersData,
+    loadStrategicPartnersDataEn,
     loadTechPartnersData,
+    loadTechPartnersDataEn,
     loadPartnerCasesData,
+    loadPartnerCasesDataEn,
     loadTeamMembersData,
-    loadCompanyHistoryData
+    loadTeamMembersDataEn,
+    loadCompanyHistoryData,
+    loadCompanyHistoryDataEn
 };

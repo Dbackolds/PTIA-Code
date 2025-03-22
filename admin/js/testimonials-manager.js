@@ -33,11 +33,16 @@ function initTestimonialsManager() {
         testimonialsContainer.innerHTML = '';
         
         // 兼容两种数据格式，优先使用reviews字段
-        const testimonialsList = testimonialsData.reviews || testimonialsData.testimonials;
+        const testimonialsList = testimonialsData.reviews || testimonialsData.testimonials || [];
         
-        if (!testimonialsList || !Array.isArray(testimonialsList)) {
+        if (!Array.isArray(testimonialsList)) {
             console.error('评价数据格式不正确:', testimonialsData);
             return;
+        }
+        
+        // 确保testimonialsData.reviews存在
+        if (!testimonialsData.reviews) {
+            testimonialsData.reviews = testimonialsList;
         }
         
         testimonialsList.forEach((testimonial, index) => {
@@ -76,12 +81,8 @@ function initTestimonialsManager() {
         document.querySelectorAll('.delete-testimonial').forEach(button => {
             button.addEventListener('click', function() {
                 const index = parseInt(this.dataset.index);
-                // 检查数据结构，兼容不同的数据格式
-                if (testimonialsData.testimonials) {
-                    testimonialsData.testimonials.splice(index, 1);
-                } else if (testimonialsData.reviews) {
-                    testimonialsData.reviews.splice(index, 1);
-                }
+                // 确保使用reviews数组操作
+                testimonialsData.reviews.splice(index, 1);
                 renderTestimonialItems();
             });
         });
@@ -89,7 +90,12 @@ function initTestimonialsManager() {
     
     // 添加新评价
     addButton.addEventListener('click', function() {
-        testimonialsData.testimonials.push({
+        // 确保使用reviews数组添加
+        if (!testimonialsData.reviews) {
+            testimonialsData.reviews = [];
+        }
+        
+        testimonialsData.reviews.push({
             avatar: 'images/avatar1.jpg',
             name: '新用户',
             content: '评价内容'
@@ -104,7 +110,7 @@ function initTestimonialsManager() {
         
         // 更新评价数据
         const testimonialItems = document.querySelectorAll('.testimonial-admin-item');
-        testimonialsData.testimonials = Array.from(testimonialItems).map(item => {
+        testimonialsData.reviews = Array.from(testimonialItems).map(item => {
             return {
                 avatar: item.querySelector('.testimonial-avatar').value,
                 name: item.querySelector('.testimonial-name').value,

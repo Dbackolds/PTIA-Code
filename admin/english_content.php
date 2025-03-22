@@ -43,6 +43,9 @@ $testimonialsEn = json_decode(file_get_contents('../data/testimonials_en.json'),
             <button class="nav-link" id="cases-tab" data-bs-toggle="tab" data-bs-target="#cases-content" type="button" role="tab" aria-controls="cases-content" aria-selected="false">案例</button>
         </li>
         <li class="nav-item" role="presentation">
+            <button class="nav-link" id="partner-cases-tab" data-bs-toggle="tab" data-bs-target="#partner-cases-content" type="button" role="tab" aria-controls="partner-cases-content" aria-selected="false">合作案例</button>
+        </li>
+        <li class="nav-item" role="presentation">
             <button class="nav-link" id="products-tab" data-bs-toggle="tab" data-bs-target="#products-content" type="button" role="tab" aria-controls="products-content" aria-selected="false">产品</button>
         </li>
         <li class="nav-item" role="presentation">
@@ -130,6 +133,29 @@ $testimonialsEn = json_decode(file_get_contents('../data/testimonials_en.json'),
         <!-- 其他标签页内容 -->
         <!-- 这里省略其他标签页的内容，将在JavaScript中动态处理 -->
         
+        <!-- 合作案例管理 -->
+        <div class="tab-pane fade" id="partner-cases-content" role="tabpanel" aria-labelledby="partner-cases-tab">
+            <div class="card mt-3">
+                <div class="card-body">
+                    <div class="mb-3">
+                        <label for="partner-cases-en-title" class="form-label">标题</label>
+                        <input type="text" class="form-control" id="partner-cases-en-title" value="<?php echo isset($partnerCasesEn['title']) ? htmlspecialchars($partnerCasesEn['title']) : ''; ?>">
+                    </div>
+                    <div class="mb-3">
+                        <div id="partner-cases-en-container">
+                            <!-- 合作案例项将通过JavaScript动态添加 -->
+                        </div>
+                        <button id="add-partner-case-en" class="btn btn-outline-primary mt-2">
+                            <i class="bi bi-plus"></i> 添加合作案例
+                        </button>
+                    </div>
+                    <div class="action-buttons">
+                        <button id="save-partner-cases-en" class="btn btn-primary">保存更改</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
         <!-- 评价管理 -->
         <div class="tab-pane fade" id="testimonials-content" role="tabpanel" aria-labelledby="testimonials-tab">
             <div class="card mt-3">
@@ -150,6 +176,20 @@ $testimonialsEn = json_decode(file_get_contents('../data/testimonials_en.json'),
                         <button id="save-testimonials-en" class="btn btn-primary">保存更改</button>
                     </div>
                 </div>
+            </div>
+        </div>
+        
+        <!-- 页脚管理 -->
+        <div class="tab-pane fade" id="footer-content" role="tabpanel" aria-labelledby="footer-tab">
+            <div id="footer-en-container">
+                <!-- 页脚内容将通过JavaScript动态添加 -->
+            </div>
+        </div>
+        
+        <!-- 导航管理 -->
+        <div class="tab-pane fade" id="navigation-content" role="tabpanel" aria-labelledby="navigation-tab">
+            <div id="navigation-en-container">
+                <!-- 导航内容将通过JavaScript动态添加 -->
             </div>
         </div>
     </div>
